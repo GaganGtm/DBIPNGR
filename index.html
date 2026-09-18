@@ -13,24 +13,28 @@
         #mainAppContainer { display: none; flex-direction: column; height: 100%; }
 
         /* ==========================================
-           GATEKEEPER OVERLAY CSS
+           GATEKEEPER OVERLAY CSS (UPGRADED UX)
            ========================================== */
         #gatekeeperOverlay { position: fixed; inset: 0; background: #e3f2fd; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow-y: auto; padding: 20px;}
-        .gk-title { font-size: 26px; font-weight: bold; color: #1976d2; margin-bottom: 30px; text-align: center; text-transform: uppercase; letter-spacing: 1px;}
-        .gk-container { display: flex; gap: 30px; max-width: 900px; width: 100%; align-items: stretch; justify-content: center; flex-wrap: wrap;}
-        .gk-card { background: white; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); padding: 25px; flex: 1; min-width: 300px; display: flex; flex-direction: column;}
-        .gk-card-title { font-size: 18px; font-weight: bold; color: #333; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 15px; text-align: center;}
+        .gk-title { font-size: 28px; font-weight: 900; color: #1565c0; margin-bottom: 5px; text-align: center; text-transform: uppercase; letter-spacing: 1px;}
+        .gk-subtitle { font-size: 16px; font-weight: bold; color: #555; margin-bottom: 40px; text-align: center;}
         
-        .gk-btn { background-color: #1976d2; color: white; border: none; padding: 10px; cursor: pointer; font-weight: bold; border-radius: 4px; font-size: 14px; width: 100%; margin-top: auto; transition: 0.2s;}
+        .gk-container { display: flex; gap: 30px; max-width: 900px; width: 100%; align-items: stretch; justify-content: center; flex-wrap: wrap;}
+        .gk-card { background: white; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); padding: 30px; flex: 1; min-width: 320px; display: flex; flex-direction: column; border-top: 5px solid #1976d2;}
+        .gk-card-title { font-size: 20px; font-weight: 800; color: #333; margin-bottom: 15px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px;}
+        .gk-icon-row { display: flex; gap: 15px; font-size: 28px; margin-bottom: 5px;}
+        
+        .gk-btn { background-color: #1976d2; color: white; border: none; padding: 12px; cursor: pointer; font-weight: bold; border-radius: 6px; font-size: 15px; width: 100%; margin-top: auto; transition: 0.2s; text-transform: uppercase; letter-spacing: 0.5px;}
         .gk-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-        .gk-btn:hover:not(:disabled) { background-color: #1565c0; }
-        .gk-btn-outline { background-color: white; color: #1976d2; border: 1px solid #1976d2; margin-bottom: 10px;}
+        .gk-btn:hover:not(:disabled) { background-color: #1565c0; transform: translateY(-1px); box-shadow: 0 4px 8px rgba(0,0,0,0.15);}
+        .gk-btn-outline { background-color: white; color: #1976d2; border: 2px solid #1976d2; margin-bottom: 15px;}
+        .gk-desc { font-size: 12px; color: #666; text-align: center; margin-top: 15px; font-style: italic; border-top: 1px solid #eee; padding-top: 12px;}
 
         /* Main UI Styling */
         .sticky-top { flex: 0 0 auto; padding: 10px 10px 0 10px; background-color: #f8f9fa; z-index: 1000; }
-        .header-title { background-color: #4285f4; color: white; padding: 10px; text-align: center; font-weight: bold; font-size: 20px; margin-bottom: 0; border-radius: 4px; transition: background-color 0.3s;}
+        .header-title { background-color: #4285f4; color: white; padding: 10px 20px; text-align: center; font-weight: bold; font-size: 20px; margin-bottom: 0; border-radius: 4px; display: flex; justify-content: space-between; align-items: center;}
         
-        .tab-container { margin-bottom: 0; margin-top: 5px; display: flex; width: 100%; }
+        .tab-container { margin-bottom: 0; margin-top: 8px; display: flex; width: 100%; }
         .tab-btn { flex: 1; background-color: #e0e0e0; border: 1px solid #ccc; border-bottom: none; padding: 8px; cursor: pointer; font-size: 14px; font-weight: bold; border-radius: 6px 6px 0 0; text-align: center; margin-right: 4px; transition: all 0.2s ease;}
         .tab-btn:last-child { margin-right: 0; }
         .tab-btn:hover { background-color: #d5d5d5; }
@@ -92,6 +96,13 @@
         .guide-box { background: white; padding: 15px; border-radius: 8px; border: 1px solid #ccc; box-shadow: 0 2px 4px rgba(0,0,0,0.05); font-size: 13px; line-height: 1.5; color: #333; margin-bottom:15px;}
         .guide-box h2 { margin-top: 0; color: #e91e63; border-bottom: 2px solid #eee; padding-bottom: 5px; font-size: 16px;}
 
+        /* Dropdown Profile Menu */
+        .profile-dropdown-content { display: none; position: absolute; right: 0; top: 35px; background-color: #ffffff; min-width: 200px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 2000; border-radius: 6px; overflow: hidden; border: 1px solid #ccc;}
+        .profile-dropdown-content.show { display: block; }
+        .profile-info-row { padding: 12px; border-bottom: 1px solid #eee; color: #333; font-size: 12px; text-align: left;}
+        .profile-logout-btn { background-color: #d32f2f; color: white; text-align: center; padding: 10px; cursor: pointer; font-weight: bold; font-size: 12px; transition: 0.2s; border: none; width: 100%;}
+        .profile-logout-btn:hover { background-color: #b71c1c; }
+
         /* -------------------------------------------------------------
            FORMAL HIDDEN PRINT REPORT ARCHITECTURE
            ------------------------------------------------------------- */
@@ -121,34 +132,42 @@
          THE GATEKEEPER OVERLAY (LANDING PAGE)
          ========================================================= -->
     <div id="gatekeeperOverlay">
-        <div class="gk-title">Double Burden Index (DBI) Calculator<br><span style="font-size: 16px; font-weight: normal; color: #555;">by Phadke, Gautam, Nair and Rade, 2026</span></div>
+        <div class="gk-title">Double Burden Index (DBI) Calculator</div>
+        <div class="gk-subtitle">by Phadke, Gautam, Nair and Rade, 2026</div>
         
         <div class="gk-container">
-            <!-- DOOR 1: GUEST ACCESS -->
+            <!-- USER MODE: GUEST ACCESS -->
             <div class="gk-card">
-                <div class="gk-card-title" style="color: #2e7d32;">Door 1: Guest Access</div>
+                <div class="gk-card-title" style="color: #2e7d32;">
+                    <div class="gk-icon-row">👶 📏 ⚖️</div>
+                    User Mode: Guest Access
+                </div>
                 
                 <div id="gkGuestActive" style="display: none; flex-direction: column; height: 100%;">
-                    <div style="font-size: 13px; color: #333; line-height: 1.5; margin-bottom: 15px;">
-                        <strong>Privacy by Design:</strong> Guest mode operates 100% locally in your browser. No child health data is transmitted to or stored on any server.
+                    <div style="font-size: 13px; color: #333; line-height: 1.5; margin-bottom: 15px; text-align: center;">
+                        Compute epidemiological z-scores and DBI classifications locally on your device without leaving a digital footprint.
                     </div>
-                    <label style="display: flex; gap: 8px; align-items: flex-start; cursor: pointer; font-size: 12px; font-weight: bold; color: #1b5e20; background: #e8f5e9; padding: 10px; border-radius: 4px; margin-bottom: 20px;">
+                    <label style="display: flex; gap: 8px; align-items: flex-start; cursor: pointer; font-size: 12px; font-weight: bold; color: #1b5e20; background: #e8f5e9; padding: 10px; border-radius: 6px; margin-bottom: 20px; border: 1px solid #4caf50;">
                         <input type="checkbox" id="gkGuestConsent" onchange="validateGuestGate()" style="margin-top: 2px;">
                         <span>I acknowledge this is a zero-knowledge local session. I understand no data will be backed up or synced to the cloud.</span>
                     </label>
                     <button id="btnEnterGuest" class="gk-btn" style="background-color: #2e7d32;" onclick="enterAsGuest()" disabled>Enter as Guest</button>
+                    <div class="gk-desc">This mode is restricted to local browser calculations only. It does not utilize backend storage or quota limits.</div>
                 </div>
 
-                <div id="gkGuestLocked" style="display: flex; flex-direction: column; height: 100%; justify-content: center; align-items: center; text-align: center; background: #ffebee; border: 1px solid #d32f2f; border-radius: 4px; padding: 20px;">
-                    <div style="font-size: 24px; margin-bottom: 10px;">🛑</div>
-                    <div style="font-size: 14px; font-weight: bold; color: #b71c1c;">Guest Access Restricted</div>
-                    <div style="font-size: 12px; color: #b71c1c; margin-top: 5px;">During this initial rollout phase, you must log in to an authorized registered account to process data.</div>
+                <div id="gkGuestLocked" style="display: flex; flex-direction: column; height: 100%; justify-content: center; align-items: center; text-align: center; background: #ffebee; border: 1px solid #d32f2f; border-radius: 6px; padding: 20px;">
+                    <div style="font-size: 32px; margin-bottom: 10px;">🛑</div>
+                    <div style="font-size: 16px; font-weight: bold; color: #b71c1c;">Guest Access Restricted</div>
+                    <div style="font-size: 13px; color: #b71c1c; margin-top: 10px; line-height: 1.4;">During this initial rollout phase, you must log in to an authorized registered account to process data.</div>
                 </div>
             </div>
 
-            <!-- DOOR 2: REGISTERED PROVIDER -->
+            <!-- USER MODE: REGISTERED USER -->
             <div class="gk-card">
-                <div class="gk-card-title" style="color: #1976d2;">Door 2: Registered Provider</div>
+                <div class="gk-card-title" style="color: #1976d2;">
+                    <div class="gk-icon-row">🏥 👨‍⚕️ ☁️</div>
+                    User Mode: Registered User
+                </div>
                 
                 <div style="display: flex; gap: 10px; margin-bottom: 15px;">
                     <button id="tabGkLog" class="gk-btn gk-btn-outline" style="margin-bottom:0; background: #1976d2; color: white;" onclick="setGkTab('login')">Login</button>
@@ -156,22 +175,23 @@
                 </div>
 
                 <div id="gkRegFields" style="display: none;">
-                    <input type="text" id="gkName" placeholder="Doctor / Practitioner Name" style="width: 100%; padding: 8px; font-size: 12px; margin-bottom: 10px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;">
-                    <input type="text" id="gkFacility" placeholder="Facility / Clinic Name" style="width: 100%; padding: 8px; font-size: 12px; margin-bottom: 10px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;">
+                    <input type="text" id="gkName" placeholder="Doctor / Practitioner Name" style="width: 100%; padding: 10px; font-size: 13px; margin-bottom: 10px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;">
+                    <input type="text" id="gkFacility" placeholder="Facility / Clinic Name" style="width: 100%; padding: 10px; font-size: 13px; margin-bottom: 10px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;">
                 </div>
 
-                <input type="email" id="gkEmail" placeholder="Email Address" style="width: 100%; padding: 8px; font-size: 12px; margin-bottom: 10px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;">
-                <input type="password" id="gkPassword" placeholder="Password" style="width: 100%; padding: 8px; font-size: 12px; margin-bottom: 15px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;">
+                <input type="email" id="gkEmail" placeholder="Email Address" style="width: 100%; padding: 10px; font-size: 13px; margin-bottom: 10px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;">
+                <input type="password" id="gkPassword" placeholder="Password" style="width: 100%; padding: 10px; font-size: 13px; margin-bottom: 15px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;">
 
-                <div id="gkDpdpaBlock" style="display: none; background: #fff3e0; border: 1px solid #ff9800; border-radius: 4px; padding: 10px; margin-bottom: 15px;">
-                    <div style="font-size: 11px; font-weight: bold; color: #e65100; margin-bottom: 4px;">DPDP ACT 2023 STATUTORY CONSENT:</div>
-                    <label style="display: flex; gap: 6px; align-items: flex-start; cursor: pointer; font-size: 11px; font-weight: bold; color: #b71c1c;">
+                <div id="gkDpdpaBlock" style="display: none; background: #eaf1fb; border: 1px solid #1976d2; border-radius: 6px; padding: 10px; margin-bottom: 15px;">
+                    <div style="font-size: 11px; font-weight: bold; color: #1976d2; margin-bottom: 4px;">DPDP ACT 2023 STATUTORY CONSENT:</div>
+                    <label style="display: flex; gap: 6px; align-items: flex-start; cursor: pointer; font-size: 11px; font-weight: bold; color: #d32f2f;">
                         <input type="checkbox" id="gkRegConsentCheck" onchange="validateRegGate()" style="margin-top: 1px;">
                         <span>I am an authorized Data Fiduciary. I consent to account processing and agree to uphold all statutory parental consent duties under Section 9 prior to syncing data.</span>
                     </label>
                 </div>
 
                 <button id="btnEnterReg" class="gk-btn" onclick="submitAuth()">Sign In</button>
+                <div class="gk-desc">This mode connects to secure cloud storage, enabling daily quota tracking (max 1000 entries) and data persistence across sessions.</div>
             </div>
         </div>
     </div>
@@ -181,14 +201,34 @@
          MAIN APPLICATION UI (Hidden until Gatekeeper cleared)
          ========================================================= -->
     <div id="mainAppContainer">
+        
+        <!-- HEADER WITH PROFILE MENU COMPONENT -->
         <div class="sticky-top">
-            <div class="header-title" id="mainHeaderTitle">Double Burden Index (DBI) Calculator by Phadke, Gautam, Nair and Rade, 2026</div>
-
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 4px;">
-                <div style="font-size: 12px; font-weight: bold; color: #2e7d32;" id="quotaTrackerLabel"></div>
-                <div>
-                    <span id="userStatusLabel" style="font-size: 12px; font-weight: bold; color: #555; margin-right: 10px;"></span>
-                    <button onclick="logoutUser()" style="background-color: #d32f2f; color: white; border: none; padding: 4px 12px; cursor: pointer; font-weight: bold; border-radius: 4px; font-size: 11px;">Logout / Exit</button>
+            <div class="header-title">
+                <div style="width: 200px;"></div> <!-- Left Spacer for center alignment -->
+                <div style="flex-grow: 1; text-align: center; font-size: 20px;">DOUBLE BURDEN INDEX (DBI) CALCULATOR</div>
+                
+                <!-- Right Aligned Profile Icon -->
+                <div style="width: 200px; display: flex; justify-content: flex-end; align-items: center; position: relative;">
+                    <div id="userProfileBtn" style="cursor: pointer; position: relative; display: flex; align-items: center; gap: 8px;" onclick="toggleProfileMenu()">
+                        <span id="headerUserText" style="font-size: 12px; font-weight: normal;">Guest</span>
+                        <div style="background: white; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                            <span style="font-size: 16px;">👤</span>
+                        </div>
+                        
+                        <!-- Dropdown Box -->
+                        <div id="profileDropdown" class="profile-dropdown-content">
+                            <div class="profile-info-row">
+                                <strong style="color:#1976d2;">Account Status:</strong><br>
+                                <span id="dropdownStatusText" style="color: #666;">Guest Mode</span>
+                            </div>
+                            <div class="profile-info-row" id="dropdownQuotaRow" style="display:none;">
+                                <strong style="color:#2e7d32;">Daily Quota:</strong><br>
+                                <span id="dropdownQuotaText" style="color: #666;">0 / 1000</span>
+                            </div>
+                            <button class="profile-logout-btn" onclick="logoutUser()">Exit / Logout</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -231,9 +271,12 @@
                     <div id="pageNumbers" style="display: flex; gap: 3px;"></div>
                     
                     <div style="display: flex; align-items: center; gap: 10px;">
-                        <label id="manualSyncBlock" style="display: none; font-size: 11px; font-weight: bold; color: #b71c1c; cursor: pointer; align-items: center; gap: 4px;">
-                            <input type="checkbox" id="dpdpaManualConsentCheck" onchange="toggleManualSyncButton()" style="margin:0;"> [DPDP Act] Parental Consent obtained
-                        </label>
+                        <div id="manualSyncBlock" style="display: none; background: #eaf1fb; border: 1px solid #1976d2; border-radius: 4px; padding: 4px 8px;">
+                            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 11px; font-weight: bold; color: #d32f2f; margin: 0;">
+                                <input type="checkbox" id="dpdpaManualConsentCheck" onchange="toggleManualSyncButton()" style="margin:0;">
+                                [DPDP Act] I certify Verifiable Parental Consent to sync entries to cloud storage.
+                            </label>
+                        </div>
                         <button id="btnSyncManual" onclick="syncManualData()" disabled style="display: none; background-color: #1976d2; color: white; border: none; padding: 3px 8px; cursor: not-allowed; font-weight: bold; border-radius: 3px; font-size: 11px; opacity: 0.5;">☁️ Sync</button>
                         <button id="btnAddRow" onclick="addRow()" style="padding: 3px 8px; background-color: #4285f4; color: white; border: none; cursor:pointer; font-weight:bold; border-radius: 3px; font-size: 11px;">+ Add Single Row</button>
                     </div>
@@ -249,7 +292,7 @@
                     <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-top: 2px;">
                         <input type="file" id="csvFileInput" accept=".csv" style="font-size: 11px; padding: 2px;">
                         
-                        <label id="registeredConsentBlock" style="display: none; font-size: 11px; color: #e65100; font-weight: bold; cursor: pointer; background: #fff3e0; padding: 3px 6px; border-radius: 3px;">
+                        <label id="registeredConsentBlock" style="display: none; font-size: 11px; color: #d32f2f; font-weight: bold; cursor: pointer; background: #eaf1fb; border: 1px solid #1976d2; padding: 4px 8px; border-radius: 4px;">
                             <input type="checkbox" id="dpdpaConsentCheck" onchange="toggleUploadButton()" style="vertical-align: middle;"> 
                             [DPDP Act] I certify verifiable parental consent obtained prior to upload.
                         </label>
@@ -331,7 +374,6 @@
 
     <!-- FORMAL HIDDEN PRINT REPORT ARCHITECTURE -->
     <div id="formalPrintReport">
-        <!-- Exact same print HTML structure maintained silently -->
         <div class="print-page cover-page">
             <div>
                 <div class="report-title">Summary Analysis Report for Double Burden Index</div>
@@ -147867,12 +147909,10 @@
     // DEPLOYMENT CONTROLS & GATEKEEPER LOGIC
     // ==========================================
     
-    // THE MASTER SWITCH: Set to false for Phase 1. Change to true for Phase 2.
     const ENABLE_GUEST_MODE = false; 
     let isAuthenticatedUser = false; 
-    let gkAuthMode = 'login'; // 'login' or 'register'
+    let gkAuthMode = 'login'; 
 
-    // Initialize Gatekeeper UI based on Phase Switch
     window.addEventListener('DOMContentLoaded', () => {
         const gkActive = document.getElementById('gkGuestActive');
         const gkLocked = document.getElementById('gkGuestLocked');
@@ -147930,20 +147970,36 @@
         document.getElementById('btnEnterReg').disabled = !isChecked;
     }
 
+    function toggleProfileMenu() {
+        document.getElementById("profileDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown menu if the user clicks outside of it
+    window.onclick = function(event) {
+        if (!event.target.closest('#userProfileBtn')) {
+            var dropdowns = document.getElementsByClassName("profile-dropdown-content");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+
     function enterAsGuest() {
         document.getElementById('gatekeeperOverlay').style.display = 'none';
         document.getElementById('mainAppContainer').style.display = 'flex';
         isAuthenticatedUser = false;
         
-        document.getElementById('userStatusLabel').innerText = "Guest Mode (Local Only)";
-        document.getElementById('quotaTrackerLabel').innerText = "";
+        document.getElementById('headerUserText').innerText = "Guest";
+        document.getElementById('dropdownStatusText').innerText = "Guest Mode (Local)";
+        document.getElementById('dropdownQuotaRow').style.display = 'none';
         
-        // Hide cloud UI
         document.getElementById('manualSyncBlock').style.display = 'none';
         document.getElementById('btnSyncManual').style.display = 'none';
         document.getElementById('registeredConsentBlock').style.display = 'none';
         
-        // Unlock base functions
         document.getElementById('btnProcessCsv').disabled = false; 
         document.getElementById('btnProcessCsv').style.opacity = '1';
         document.getElementById('btnProcessCsv').style.cursor = 'pointer';
@@ -147952,54 +148008,51 @@
     function submitAuth() {
         const email = document.getElementById('gkEmail').value.trim();
         if (!email) { alert("Please enter your email."); return; }
-
         if (gkAuthMode === 'register' && !document.getElementById('gkRegConsentCheck').checked) return;
 
-        // Backend integration point: Call Supabase/Auth0 here.
-        // Assuming success:
         document.getElementById('gatekeeperOverlay').style.display = 'none';
         document.getElementById('mainAppContainer').style.display = 'flex';
         isAuthenticatedUser = true;
 
-        document.getElementById('userStatusLabel').innerText = `Logged in: ${email}`;
-        document.getElementById('quotaTrackerLabel').innerText = "Daily Quota: 0 / 1000";
+        document.getElementById('headerUserText').innerText = email.split('@')[0];
+        document.getElementById('dropdownStatusText').innerText = email;
+        document.getElementById('dropdownQuotaRow').style.display = 'block';
+        document.getElementById('dropdownQuotaText').innerText = "0 / 1000";
 
-        // Show cloud UI
         document.getElementById('manualSyncBlock').style.display = 'flex';
         document.getElementById('btnSyncManual').style.display = 'block';
-        document.getElementById('registeredConsentBlock').style.display = 'block';
+        document.getElementById('registeredConsentBlock').style.display = 'flex';
         
-        // Lock upload until consented
         toggleUploadButton();
         toggleManualSyncButton();
 
-        // MOCK HYDRATION
         if(gkAuthMode === 'login') {
             globalData = fetchHydratedDataFromDB();
             currentPage = 1;
             renderTable();
             updateAllDashboards();
-            alert("Welcome back! Your previously synced data has been loaded from the secure database.");
+            
+            if(globalData.length > 0 && globalData[0].fac !== "") {
+                alert("Welcome back! Your previously synced data has been loaded from the secure database.");
+            }
         }
     }
 
     function logoutUser() {
         isAuthenticatedUser = false;
-        // Wipe local memory
         globalData = [];
         for(let i=1; i<=10; i++) globalData.push(createEmptyRow(i));
         renderTable();
         updateAllDashboards();
 
-        // Show gatekeeper, hide app
         document.getElementById('mainAppContainer').style.display = 'none';
         document.getElementById('gatekeeperOverlay').style.display = 'flex';
         
-        // Reset forms
         document.getElementById('gkEmail').value = "";
         document.getElementById('gkPassword').value = "";
         document.getElementById('gkGuestConsent').checked = false;
         document.getElementById('gkRegConsentCheck').checked = false;
+        document.getElementById("profileDropdown").classList.remove("show");
         validateGuestGate();
         setGkTab('login');
     }
@@ -148023,14 +148076,16 @@
     }
 
     function fetchHydratedDataFromDB() {
-        // Backend integration point: GET /api/v1/records
-        let mockDBData = [
-            { id: 1, fac: "City Clinic", child: "Aarav", sDate: "2026-09-10", bDate: "2024-05-15", gender: "m", wt: "12.5", ht: "88.0", synced: true },
-            { id: 2, fac: "City Clinic", child: "Diya", sDate: "2026-09-10", bDate: "2025-01-20", gender: "f", wt: "9.2", ht: "76.5", synced: true }
-        ];
-        mockDBData.forEach(r => {
-            r.calc = calculateLogicFast(r.fac, r.child, r.sDate, r.bDate, r.gender, parseFloat(r.wt), parseFloat(r.ht));
-        });
+        // Returning an empty array so no fake children (Aarav/Diya) appear.
+        let mockDBData = [];
+        
+        if (mockDBData.length === 0) {
+            for(let i=1; i<=10; i++) mockDBData.push(createEmptyRow(i));
+        } else {
+            mockDBData.forEach(r => {
+                r.calc = calculateLogicFast(r.fac, r.child, r.sDate, r.bDate, r.gender, parseFloat(r.wt), parseFloat(r.ht));
+            });
+        }
         return mockDBData;
     }
 
@@ -148038,13 +148093,12 @@
         let unsavedCount = globalData.filter(r => !r.synced && r.fac && r.child && r.wt && r.ht).length;
         if (unsavedCount === 0) { alert("No complete, unsaved manual entries to sync."); return; }
         
-        // Backend integration point: POST /api/v1/records/batch-upload
         alert(`Successfully synced ${unsavedCount} manual entries to the database.\n\nYour DPDPA Section 9(1) consent has been securely logged on the backend.`);
         
         globalData.forEach(r => { if(r.fac && r.child && r.wt && r.ht) r.synced = true; });
         document.getElementById('dpdpaManualConsentCheck').checked = false;
         toggleManualSyncButton();
-        document.getElementById('quotaTrackerLabel').innerText = `Daily Quota: ${unsavedCount} / 1000`;
+        document.getElementById('dropdownQuotaText').innerText = `${unsavedCount} / 1000`;
     }
 
     // ==========================================
@@ -148374,7 +148428,7 @@
                 document.getElementById('dpdpaConsentCheck').checked = false;
                 toggleUploadButton();
                 if(isAuthenticatedUser) {
-                    document.getElementById('quotaTrackerLabel').innerText = `Daily Quota: ${e.data.data.length} / 1000`;
+                    document.getElementById('dropdownQuotaText').innerText = `${e.data.data.length} / 1000`;
                 }
             }
         };
