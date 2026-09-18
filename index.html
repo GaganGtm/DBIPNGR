@@ -13,95 +13,114 @@
         #mainAppContainer { display: none; flex-direction: column; height: 100%; }
 
         /* ==========================================
-           GATEKEEPER OVERLAY CSS (UPGRADED UX)
+           GATEKEEPER OVERLAY CSS (PROFESSIONAL UX)
            ========================================== */
-        #gatekeeperOverlay { position: fixed; inset: 0; background: #e3f2fd; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow-y: auto; padding: 20px;}
-        .gk-title { font-size: 28px; font-weight: 900; color: #1565c0; margin-bottom: 5px; text-align: center; text-transform: uppercase; letter-spacing: 1px;}
+        #gatekeeperOverlay { position: fixed; inset: 0; background: #f4f7fe; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow-y: auto; padding: 20px;}
+        .gk-title { font-size: 28px; font-weight: 900; color: #1976d2; margin-bottom: 5px; text-align: center; text-transform: uppercase; letter-spacing: 1px;}
         .gk-subtitle { font-size: 16px; font-weight: bold; color: #555; margin-bottom: 40px; text-align: center;}
         
         .gk-container { display: flex; gap: 30px; max-width: 900px; width: 100%; align-items: stretch; justify-content: center; flex-wrap: wrap;}
-        .gk-card { background: white; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); padding: 30px; flex: 1; min-width: 320px; display: flex; flex-direction: column; border-top: 5px solid #1976d2;}
-        .gk-card-title { font-size: 20px; font-weight: 800; color: #333; margin-bottom: 15px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px;}
-        .gk-icon-row { display: flex; gap: 15px; font-size: 28px; margin-bottom: 5px;}
+        .gk-card { background: white; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); padding: 30px; flex: 1; min-width: 320px; display: flex; flex-direction: column; border: 2px solid #4285f4; border-top: 6px solid #4285f4;}
+        .gk-card-title { font-size: 20px; font-weight: 800; color: #333; margin-bottom: 20px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px;}
+        .gk-icon-row { display: flex; gap: 15px; color: #1976d2;}
         
-        .gk-btn { background-color: #1976d2; color: white; border: none; padding: 12px; cursor: pointer; font-weight: bold; border-radius: 6px; font-size: 15px; width: 100%; margin-top: auto; transition: 0.2s; text-transform: uppercase; letter-spacing: 0.5px;}
+        .gk-btn { background-color: #1976d2; color: white; border: none; padding: 12px; cursor: pointer; font-weight: bold; border-radius: 4px; font-size: 15px; width: 100%; transition: 0.2s;}
         .gk-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-        .gk-btn:hover:not(:disabled) { background-color: #1565c0; transform: translateY(-1px); box-shadow: 0 4px 8px rgba(0,0,0,0.15);}
+        .gk-btn:hover:not(:disabled) { background-color: #1565c0; box-shadow: 0 2px 4px rgba(0,0,0,0.2);}
         .gk-btn-outline { background-color: white; color: #1976d2; border: 2px solid #1976d2; margin-bottom: 15px;}
-        .gk-desc { font-size: 12px; color: #666; text-align: center; margin-top: 15px; font-style: italic; border-top: 1px solid #eee; padding-top: 12px;}
+        .gk-desc { font-size: 12px; color: #555; text-align: center; margin-top: 20px; font-style: italic; padding-top: 15px; border-top: 1px solid #eee;}
 
-        /* Main UI Styling */
+        /* ==========================================
+           MAIN APP UI
+           ========================================== */
         .sticky-top { flex: 0 0 auto; padding: 10px 10px 0 10px; background-color: #f8f9fa; z-index: 1000; }
-        .header-title { background-color: #4285f4; color: white; padding: 10px 20px; text-align: center; font-weight: bold; font-size: 20px; margin-bottom: 0; border-radius: 4px; display: flex; justify-content: space-between; align-items: center;}
         
+        /* RESTORED PERFECT HEADER */
+        .header-title { position: relative; background-color: #4285f4; color: white; padding: 12px; text-align: center; font-weight: bold; font-size: 22px; margin-bottom: 0; border-radius: 4px; transition: background-color 0.3s;}
+        
+        /* Dropdown Profile Menu (Absolute Position) */
+        .profile-container { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); display: flex; align-items: center; gap: 8px; cursor: pointer; }
+        .profile-dropdown-content { display: none; position: absolute; right: 0; top: 40px; background-color: #ffffff; min-width: 220px; box-shadow: 0px 8px 16px rgba(0,0,0,0.2); z-index: 2000; border-radius: 6px; overflow: hidden; border: 1px solid #ccc;}
+        .profile-dropdown-content.show { display: block; }
+        .profile-info-row { padding: 12px; border-bottom: 1px solid #eee; color: #333; font-size: 12px; text-align: left; font-weight: normal; line-height: 1.4;}
+        .profile-logout-btn { background-color: #d32f2f; color: white; text-align: center; padding: 10px; cursor: pointer; font-weight: bold; font-size: 12px; transition: 0.2s; border: none; width: 100%;}
+        .profile-logout-btn:hover { background-color: #b71c1c; }
+
+        /* Dynamic Tabs */
         .tab-container { margin-bottom: 0; margin-top: 8px; display: flex; width: 100%; }
-        .tab-btn { flex: 1; background-color: #e0e0e0; border: 1px solid #ccc; border-bottom: none; padding: 8px; cursor: pointer; font-size: 14px; font-weight: bold; border-radius: 6px 6px 0 0; text-align: center; margin-right: 4px; transition: all 0.2s ease;}
+        .tab-btn { flex: 1; background-color: #e0e0e0; border: 1px solid #ccc; border-bottom: none; padding: 10px; cursor: pointer; font-size: 15px; font-weight: bold; border-radius: 8px 8px 0 0; text-align: center; margin-right: 4px; transition: all 0.2s ease;}
         .tab-btn:last-child { margin-right: 0; }
         .tab-btn:hover { background-color: #d5d5d5; }
         
         .tab-wrapper { flex: 1 1 auto; position: relative; margin: 0 10px 10px 10px; }
-        .tab-content { position: absolute; inset: 0; visibility: hidden; opacity: 0; pointer-events: none; background: #f4f7fe; padding: 8px; border: 2px solid #4285f4; border-top: none; border-radius: 0 0 6px 6px; box-sizing: border-box; overflow-y: auto; overflow-x: hidden; transition: opacity 0.1s;}
+        .tab-content { position: absolute; inset: 0; visibility: hidden; opacity: 0; pointer-events: none; background: #f4f7fe; padding: 15px; border: 2px solid #4285f4; border-top: none; border-radius: 0 0 8px 8px; box-sizing: border-box; overflow-y: auto; overflow-x: hidden; transition: opacity 0.1s;}
         .tab-content.active { visibility: visible; opacity: 1; pointer-events: auto; display: flex; flex-direction: column;}
 
-        .table-scroll-container { flex: 1 1 auto; overflow-y: auto; border: 1px solid #ccc; background: white; margin-bottom: 6px; min-height: 0;}
+        .table-scroll-container { flex: 1 1 auto; overflow-y: auto; border: 1px solid #ccc; background: white; margin-bottom: 10px; min-height: 0;}
         table { border-collapse: collapse; width: 100%; table-layout: fixed; background: white; box-sizing: border-box;}
-        th, td { border: 1px solid #ccc; padding: 3px; text-align: center; font-size: 11px; word-wrap: break-word; overflow: hidden; }
+        th, td { border: 1px solid #ccc; padding: 5px; text-align: center; font-size: 11px; word-wrap: break-word; overflow: hidden; }
+        #spreadsheet tbody tr { content-visibility: auto; contain-intrinsic-size: 32px; }
         
-        #spreadsheet thead tr th { position: sticky; top: 0; z-index: 10; background-color: #1976d2; color: white; font-size: 11px; padding: 5px;}
-        #spreadsheet thead tr:first-child th { top: 0; font-size: 12px;}
-        #spreadsheet thead tr:nth-child(2) th { top: 26px; } 
+        #spreadsheet thead tr th { position: sticky; top: 0; z-index: 10; background-color: #1976d2; color: white; }
+        #spreadsheet thead tr:first-child th { top: 0; }
+        #spreadsheet thead tr:nth-child(2) th { top: 31px; } 
 
         #spreadsheet tbody tr:nth-child(even) { background-color: #eaf1fb; } 
         #spreadsheet tbody tr:nth-child(odd) { background-color: #ffffff; }
         
-        input, select { width: 100%; box-sizing: border-box; padding: 2px; font-size: 11px; background-color: rgba(255,255,255,0.8); border-radius: 3px; border: 1px solid #bbb;}
-        input[type="date"] { font-size: 10px; letter-spacing: -0.5px; padding: 2px 0px; } 
+        input, select { width: 100%; box-sizing: border-box; padding: 4px 2px; font-size: 11px; background-color: rgba(255,255,255,0.8); border-radius: 3px; border: 1px solid #bbb;}
+        input[type="date"] { font-size: 10px; letter-spacing: -0.5px; padding: 4px 0px; } 
         
-        .col-sn { width: 3.5%; } .col-fac { width: 9%; } .col-child { width: 9%; } .col-date { width: 11%; } .col-age { width: 3.5%; } .col-gen { width: 4%; } .col-wt { width: 4.5%; } .col-ht { width: 4.5%; } .col-z { width: 4%; }  .col-stat { width: 6.5%; } .col-dbi { width: 11%; }
+        .col-sn { width: 3.5%; } .col-fac { width: 9%; } .col-child { width: 9%; } .col-date { width: 11.5%; } .col-age { width: 3%; } .col-gen { width: 4%; } .col-wt { width: 4.5%; } .col-ht { width: 4.5%; } .col-z { width: 3.5%; }  .col-stat { width: 6.5%; } .col-dbi { width: 11%; }
         .dbi-cat { font-weight: normal !important; } .status-cell { font-weight: bold; }
 
-        /* Unified Pagination Controls - ULTRA COMPACT */
-        .pagination-container { flex: 0 0 auto; display: flex; flex-direction: row; justify-content: space-between; align-items: center; background: #e3f2fd; padding: 4px 8px; border: 1px solid #90caf9; border-radius: 4px; margin-bottom: 6px; }
-        #pageInfoText { font-weight: bold; font-size: 11px; color: #1976d2; }
-        .page-num-btn { background: white; color: #1976d2; border: 1px solid #90caf9; padding: 2px 6px; cursor: pointer; font-weight: bold; border-radius: 3px; font-size: 11px; transition: 0.2s;}
+        /* Unified Pagination Controls */
+        .pagination-container { flex: 0 0 auto; display: flex; flex-direction: row; justify-content: space-between; align-items: center; background: #e3f2fd; padding: 10px 15px; border: 1px solid #90caf9; border-radius: 4px; margin-bottom: 10px; }
+        #pageInfoText { font-weight: bold; font-size: 13px; color: #1976d2; flex: 1; text-align: left; }
+        #pageNumbers { flex: 2; display: flex; gap: 5px; flex-wrap: wrap; justify-content: center; align-items: center;}
+        .page-num-btn { background: white; color: #1976d2; border: 1px solid #90caf9; padding: 4px 10px; cursor: pointer; font-weight: bold; border-radius: 4px; font-size: 12px; transition: 0.2s;}
+        .page-num-btn:hover:not(:disabled) { background: #bbdefb; }
         .page-num-btn.active { background: #1976d2; color: white; border-color: #1976d2; cursor: default; }
+        .page-num-btn:disabled { color: #aaa; border-color: #ddd; cursor: not-allowed; }
+        .add-row-btn { flex: 1; text-align: right; }
 
-        /* Bulk CSV Controls - ULTRA COMPACT */
-        .bulk-import-container { flex: 0 0 auto; background: #e8f0fe; padding: 6px 10px; border: 1px solid #4285f4; border-radius: 4px; display: flex; flex-direction: column; gap: 4px;}
+        .bulk-import-container { flex: 0 0 auto; background: #e8f0fe; padding: 10px; margin-top: 5px; border: 1px solid #4285f4; border-radius: 5px; font-size: 13px; display: flex; flex-direction: column; gap: 10px;}
 
-        /* Summary Dashboard & Graphs (Condensed) */
-        .summary-top-row { display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 15px; align-items: stretch; }
+        /* Summary Dashboard Layout */
+        .summary-top-row { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; align-items: stretch; }
         .summary-column { flex: 1; min-width: 400px; display: flex; flex-direction: column; }
         .chart-container { flex: 1; min-width: 400px; background: white; padding: 15px; border-radius: 8px; border: 1px solid #ccc; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; flex-direction: column; align-items: stretch; }
         .chart-wrapper { position: relative; width: 100%; flex-grow: 1; margin-top: 10px; display: flex; align-items: center; justify-content: center;}
         .summary-bottom-row { width: 100%; }
-        .summary-table th, .summary-table td { padding: 6px; font-size: 12px; }
+        .summary-table th, .summary-table td { padding: 8px; font-size: 13px; }
         .summary-table { flex-grow: 1; display: flex; flex-direction: column; background: white; padding: 15px; border-radius: 8px; border: 1px solid #ccc; box-shadow: 0 2px 5px rgba(0,0,0,0.05);}
         .header-with-btn { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 10px; }
-        .export-btn { background-color: #4caf50; color: white; border: none; padding: 4px 10px; cursor: pointer; font-weight: bold; border-radius: 3px; font-size: 11px; transition: background 0.2s; white-space: nowrap; }
+        .export-btn { background-color: #4caf50; color: white; border: none; padding: 5px 12px; cursor: pointer; font-weight: bold; border-radius: 4px; font-size: 12px; transition: background 0.2s; white-space: nowrap; }
         .export-btn:hover { background-color: #388e3c; }
-        .dl-link { color: #1976d2; font-weight: bold; text-decoration: underline; cursor: pointer;}
-        
-        .exclusion-toggle-bar { display: flex; justify-content: space-between; align-items: center; background: white; padding: 10px 15px; border-radius: 8px; border: 1px solid #ccc; margin-bottom: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .toggle-options { display: flex; gap: 15px; align-items: center; font-size: 14px; color: #673ab7; font-weight: bold; }
-        .stat-section-title { width: 100%; font-size: 16px; font-weight: 800; color: #673ab7; margin-bottom: 8px; }
-        .stat-section { display: flex; flex-direction: row; height: 400px; gap: 15px; background: #fdfdfd; border: 1px solid #ccc; border-radius: 8px; padding: 15px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .stat-chart-container { width: 55%; height: 100%; display: flex; flex-direction: column; justify-content: center; }
-        .stat-text-container { width: 45%; height: 100%; background: #ffffff; border: 1px solid #bdbdbd; border-radius: 5px; padding: 15px; display: flex; flex-direction: column; justify-content: space-between;}
-        .stats-grid-table { width: 100%; border-collapse: collapse; font-family: "Courier New", Courier, monospace; font-size: 12px; font-weight: 700; color: #000; }
-        .stats-grid-table td { padding: 3px 0; border-bottom: 1px dashed #eee; }
-        .scatter-container { width: 100%; background: white; border: 1px solid #ccc; border-radius: 8px; padding: 15px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);}
-        .scatter-wrapper { position: relative; width: 100%; max-width: 700px; height: 700px; margin: 10px auto; background-color: #fdfdfd; border: 1px solid #e0e0e0; }
-        .exclusion-footer { background: #ede7f6; border-left: 5px solid #673ab7; padding: 10px; margin-top: 15px; font-size: 12px; color: #333; line-height: 1.5; border-radius: 0 4px 4px 0;}
-        .guide-box { background: white; padding: 15px; border-radius: 8px; border: 1px solid #ccc; box-shadow: 0 2px 4px rgba(0,0,0,0.05); font-size: 13px; line-height: 1.5; color: #333; margin-bottom:15px;}
-        .guide-box h2 { margin-top: 0; color: #e91e63; border-bottom: 2px solid #eee; padding-bottom: 5px; font-size: 16px;}
-
-        /* Dropdown Profile Menu */
-        .profile-dropdown-content { display: none; position: absolute; right: 0; top: 35px; background-color: #ffffff; min-width: 200px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 2000; border-radius: 6px; overflow: hidden; border: 1px solid #ccc;}
-        .profile-dropdown-content.show { display: block; }
-        .profile-info-row { padding: 12px; border-bottom: 1px solid #eee; color: #333; font-size: 12px; text-align: left;}
-        .profile-logout-btn { background-color: #d32f2f; color: white; text-align: center; padding: 10px; cursor: pointer; font-weight: bold; font-size: 12px; transition: 0.2s; border: none; width: 100%;}
-        .profile-logout-btn:hover { background-color: #b71c1c; }
+        .dl-link { color: #1976d2; font-weight: bold; text-decoration: underline; cursor: pointer; transition: color 0.2s; display: block; width: 100%; height: 100%;}
+        .dl-link:hover { color: #d32f2f; }
+        .exclusion-toggle-bar { display: flex; flex-direction: row; justify-content: space-between; align-items: center; background: white; padding: 12px 20px; border-radius: 8px; border: 1px solid #ccc; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); white-space: nowrap; }
+        .toggle-options { display: flex; gap: 20px; align-items: center; font-size: 15px; color: #673ab7; font-weight: bold; margin-right: auto; white-space: nowrap;}
+        .toggle-options label { cursor: pointer; display: flex; align-items: center; gap: 6px; white-space: nowrap; }
+        .toggle-options input[type="radio"] { transform: scale(1.2); cursor: pointer; margin: 0;}
+        .stat-section-title { width: 100%; font-size: 18px; font-weight: 800; color: #673ab7; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .stat-section { display: flex; flex-direction: row; height: 480px; max-height: 480px; gap: 20px; background: #fdfdfd; border: 1px solid #ccc; border-radius: 8px; padding: 20px; margin-bottom: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); box-sizing: border-box; }
+        .stat-chart-container { width: 55%; height: 100%; display: flex; flex-direction: column; justify-content: center; box-sizing: border-box;}
+        .stat-text-container { width: 45%; height: 100%; overflow: hidden; background: #ffffff; border: 1px solid #bdbdbd; border-radius: 5px; padding: 20px; box-shadow: inset 0 0 5px rgba(0,0,0,0.02); box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between;}
+        .stats-grid-table { width: 100%; border-collapse: collapse; font-family: "Courier New", Courier, monospace; font-size: 12.5px; font-weight: 700; color: #000; line-height: 1.5; }
+        .stats-grid-table td { padding: 4px 0; vertical-align: top; border-bottom: 1px dashed #eee; }
+        .stats-grid-table tr:last-child td { border-bottom: none; }
+        .stats-footer-text { font-family: "Courier New", Courier, monospace; font-size: 13.5px; font-weight: 700; color: #000; margin-top: 15px; }
+        .scatter-container { width: 100%; background: white; border: 1px solid #ccc; border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); box-sizing: border-box;}
+        .scatter-wrapper { position: relative; width: 100%; max-width: 800px; height: 800px; margin: 15px auto; background-color: #fdfdfd; border: 1px solid #e0e0e0; overflow: hidden; box-sizing: border-box;}
+        .exclusion-footer { background: #ede7f6; border-left: 5px solid #673ab7; padding: 15px; margin-top: 20px; font-size: 13px; color: #333; line-height: 1.6; border-radius: 0 4px 4px 0;}
+        .guide-grid-2 { display: grid; gap: 20px; margin-bottom: 20px; }
+        @media(min-width: 800px) { .guide-grid-2 { grid-template-columns: 1fr 1fr; } }
+        .guide-box { background: white; padding: 20px; border-radius: 8px; border: 1px solid #ccc; box-shadow: 0 2px 4px rgba(0,0,0,0.05); font-size: 14px; line-height: 1.6; color: #333;}
+        .guide-box h2, .guide-box h3 { margin-top: 0; color: #e91e63; border-bottom: 2px solid #eee; padding-bottom: 10px; font-size: 18px;}
+        .tech-note { background-color: #fce4ec; border-left: 5px solid #e91e63; padding: 20px; margin-top: 20px; font-size: 14px; line-height: 1.6; border-radius: 0 8px 8px 0;}
+        .tech-note h3 { margin-top: 0; color: #c2185b; border-bottom: none; font-size: 18px;}
+        .copyright-notice { font-size: 13px; color: #880e4f; background-color: #fce4ec; text-align: center; margin-top: 20px; padding: 15px; border: 1px solid #f8bbd0; border-radius: 8px; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.05);}
 
         /* -------------------------------------------------------------
            FORMAL HIDDEN PRINT REPORT ARCHITECTURE
@@ -114,15 +133,32 @@
             #formalPrintReport { display: block !important; padding: 0; }
             .print-page { display: flex; flex-direction: column; justify-content: flex-start; min-height: 250mm; page-break-after: always; box-sizing: border-box; overflow: hidden; width: 100%; max-width: 175mm; margin: 0 auto; }
             .print-page.no-break { page-break-after: auto; min-height: auto; }
-            .report-title { text-align: center; color: #2e7d32; font-size: 24px; font-weight: bold; text-transform: uppercase; border-bottom: 4px solid #2e7d32; padding-bottom: 10px; margin-bottom: 10px; }
-            .report-header-info { text-align: center; font-size: 14px; margin-bottom: 20px; font-style: italic; color: #333;}
-            .report-section-title { font-size: 16px; color: #1976d2; border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-top: 20px; margin-bottom: 10px; font-weight: bold; page-break-after: avoid;}
-            .report-table { width: 100%; border-collapse: collapse; margin-bottom: 5px; font-family: Arial, sans-serif; font-size: 11px; page-break-inside: avoid; table-layout: fixed; flex-grow: 1; }
-            .report-table th, .report-table td { border: 1px solid #333; padding: 4px; text-align: center; }
+            .report-title { text-align: center; color: #2e7d32; font-size: 28px; font-weight: bold; text-transform: uppercase; border-bottom: 4px solid #2e7d32; padding-bottom: 15px; margin-bottom: 15px; }
+            .report-header-info { text-align: center; font-size: 15px; margin-bottom: 25px; font-style: italic; color: #333;}
+            .exec-summary-title { font-size: 20px; color: #1976d2; border-bottom: 2px solid #ccc; padding-bottom: 8px; margin-bottom: 15px; font-weight: bold; text-align: center;}
+            .exec-summary { font-size: 17px; line-height: 1.6; text-align: justify; margin-bottom: 20px; padding: 0 15px;}
+            .tree-diagram { display: flex; flex-direction: column; align-items: center; margin: 15px 0; flex-grow: 1; justify-content: center;}
+            .tree-box { border: 2px solid #2e7d32; padding: 16px 25px; border-radius: 8px; font-weight: bold; font-family: Arial, sans-serif; text-align: center; background: #f2f9f4; min-width: 320px; font-size: 16px;}
+            .tree-box.error { border-color: #d32f2f; background: #ffebee; }
+            .tree-box.final { border-color: #1976d2; background: #e3f2fd; font-size: 19px; border-width: 3px; }
+            .tree-arrow { width: 3px; height: 35px; background: #333; position: relative; margin: 5px 0;}
+            .tree-arrow::after { content: ''; position: absolute; bottom: 0; left: -6px; border-width: 10px 8px 0; border-style: solid; border-color: #333 transparent transparent transparent; }
+            .definitions-box { font-size: 13px; line-height: 1.5; color: #444; background: #f9f9f9; padding: 15px; border: 1px solid #ddd; text-align: justify; margin: 0; page-break-inside: avoid;}
+            .report-section-title { font-size: 18px; color: #1976d2; border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-top: 25px; margin-bottom: 15px; font-weight: bold; page-break-after: avoid;}
+            .report-table { width: 100%; border-collapse: collapse; margin-bottom: 5px; font-family: Arial, sans-serif; font-size: 12px; page-break-inside: avoid; box-sizing: border-box; table-layout: fixed; flex-grow: 1; }
+            .report-table th, .report-table td { border: 1px solid #333; padding: 6px 4px; text-align: center; vertical-align: middle; overflow: hidden; word-wrap: break-word;}
             .report-table th { background-color: #1976d2 !important; color: white !important; font-weight: bold; -webkit-print-color-adjust: exact; print-color-adjust: exact;}
+            .report-table tbody tr:nth-child(even) td { background-color: #f4f7fe !important; -webkit-print-color-adjust: exact; print-color-adjust: exact;}
+            .report-table td:nth-child(2), .report-table td:nth-child(3) { text-align: left; }
+            .align-left-col td:nth-child(1) { text-align: left; } 
+            .cat-badge { font-weight: bold; color: white !important; text-shadow: 1px 1px 2px rgba(0,0,0,0.7); text-align: center !important; -webkit-print-color-adjust: exact; print-color-adjust: exact;}
+            .total-row td { background-color: #e8f5e9 !important; font-weight: bold; border-top: 2px solid #2e7d32 !important; color: #000; text-align: center; -webkit-print-color-adjust: exact; print-color-adjust: exact;}
+            .total-row td:first-child { text-align: right; } 
+            .align-left-col .total-row td:first-child { text-align: left; } 
             .chart-print-container { width: 100%; text-align: center; margin: 0 auto 5px auto; page-break-inside: avoid; display: block; max-width: 175mm;}
-            .chart-print-container img { width: 100%; max-width: 175mm; max-height: 150mm; object-fit: contain;}
-            .print-footer { text-align: center; font-size: 10px; margin-top: 10px; color: #555; padding-top: 5px; font-weight: bold;}
+            .chart-print-container img { width: 100%; max-width: 175mm; max-height: 160mm; object-fit: contain;}
+            .methodology-box { background: #f4f7fe !important; border-left: 5px solid #1976d2; padding: 15px; font-size: 12px; line-height: 1.5; margin-top: auto; page-break-inside: avoid; -webkit-print-color-adjust: exact; print-color-adjust: exact;}
+            .print-footer { text-align: center; font-size: 11px; margin-top: 10px; color: #555; padding-top: 5px; font-weight: bold;}
         }
     </style>
 </head>
@@ -139,15 +175,17 @@
             <!-- USER MODE: GUEST ACCESS -->
             <div class="gk-card">
                 <div class="gk-card-title" style="color: #2e7d32;">
-                    <div class="gk-icon-row">👶 📏 ⚖️</div>
+                    <div class="gk-icon-row">
+                        <!-- Clean Shield/File SVG -->
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#2e7d32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#2e7d32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    </div>
                     User Mode: Guest Access
                 </div>
                 
                 <div id="gkGuestActive" style="display: none; flex-direction: column; height: 100%;">
-                    <div style="font-size: 13px; color: #333; line-height: 1.5; margin-bottom: 15px; text-align: center;">
-                        Compute epidemiological z-scores and DBI classifications locally on your device without leaving a digital footprint.
-                    </div>
-                    <label style="display: flex; gap: 8px; align-items: flex-start; cursor: pointer; font-size: 12px; font-weight: bold; color: #1b5e20; background: #e8f5e9; padding: 10px; border-radius: 6px; margin-bottom: 20px; border: 1px solid #4caf50;">
+                    <div style="flex-grow: 1;"></div>
+                    <label style="display: flex; gap: 8px; align-items: flex-start; cursor: pointer; font-size: 13px; font-weight: bold; color: #1b5e20; background: #e8f5e9; padding: 12px; border-radius: 4px; margin-bottom: 20px; border: 1px solid #4caf50;">
                         <input type="checkbox" id="gkGuestConsent" onchange="validateGuestGate()" style="margin-top: 2px;">
                         <span>I acknowledge this is a zero-knowledge local session. I understand no data will be backed up or synced to the cloud.</span>
                     </label>
@@ -155,7 +193,7 @@
                     <div class="gk-desc">This mode is restricted to local browser calculations only. It does not utilize backend storage or quota limits.</div>
                 </div>
 
-                <div id="gkGuestLocked" style="display: flex; flex-direction: column; height: 100%; justify-content: center; align-items: center; text-align: center; background: #ffebee; border: 1px solid #d32f2f; border-radius: 6px; padding: 20px;">
+                <div id="gkGuestLocked" style="display: flex; flex-direction: column; height: 100%; justify-content: center; align-items: center; text-align: center; background: #ffebee; border: 1px solid #d32f2f; border-radius: 4px; padding: 20px;">
                     <div style="font-size: 32px; margin-bottom: 10px;">🛑</div>
                     <div style="font-size: 16px; font-weight: bold; color: #b71c1c;">Guest Access Restricted</div>
                     <div style="font-size: 13px; color: #b71c1c; margin-top: 10px; line-height: 1.4;">During this initial rollout phase, you must log in to an authorized registered account to process data.</div>
@@ -165,7 +203,11 @@
             <!-- USER MODE: REGISTERED USER -->
             <div class="gk-card">
                 <div class="gk-card-title" style="color: #1976d2;">
-                    <div class="gk-icon-row">🏥 👨‍⚕️ ☁️</div>
+                    <div class="gk-icon-row">
+                        <!-- Clean Hospital/Cloud SVG -->
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1976d2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1976d2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 16.2A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"></path><polyline points="16 16 12 20 8 16"></polyline><line x1="12" y1="12" x2="12" y2="20"></line></svg>
+                    </div>
                     User Mode: Registered User
                 </div>
                 
@@ -182,7 +224,7 @@
                 <input type="email" id="gkEmail" placeholder="Email Address" style="width: 100%; padding: 10px; font-size: 13px; margin-bottom: 10px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;">
                 <input type="password" id="gkPassword" placeholder="Password" style="width: 100%; padding: 10px; font-size: 13px; margin-bottom: 15px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;">
 
-                <div id="gkDpdpaBlock" style="display: none; background: #eaf1fb; border: 1px solid #1976d2; border-radius: 6px; padding: 10px; margin-bottom: 15px;">
+                <div id="gkDpdpaBlock" style="display: none; background: #eaf1fb; border: 1px solid #1976d2; border-radius: 4px; padding: 10px; margin-bottom: 15px;">
                     <div style="font-size: 11px; font-weight: bold; color: #1976d2; margin-bottom: 4px;">DPDP ACT 2023 STATUTORY CONSENT:</div>
                     <label style="display: flex; gap: 6px; align-items: flex-start; cursor: pointer; font-size: 11px; font-weight: bold; color: #d32f2f;">
                         <input type="checkbox" id="gkRegConsentCheck" onchange="validateRegGate()" style="margin-top: 1px;">
@@ -202,32 +244,29 @@
          ========================================================= -->
     <div id="mainAppContainer">
         
-        <!-- HEADER WITH PROFILE MENU COMPONENT -->
+        <!-- ORIGINAL RESTORED PERFECT HEADER WITH ABSOLUTE PROFILE ICON -->
         <div class="sticky-top">
-            <div class="header-title">
-                <div style="width: 200px;"></div> <!-- Left Spacer for center alignment -->
-                <div style="flex-grow: 1; text-align: center; font-size: 20px;">DOUBLE BURDEN INDEX (DBI) CALCULATOR</div>
+            <div class="header-title" id="mainHeaderTitle">
+                Double Burden Index (DBI) Calculator by Phadke, Gautam, Nair and Rade, 2026
                 
-                <!-- Right Aligned Profile Icon -->
-                <div style="width: 200px; display: flex; justify-content: flex-end; align-items: center; position: relative;">
-                    <div id="userProfileBtn" style="cursor: pointer; position: relative; display: flex; align-items: center; gap: 8px;" onclick="toggleProfileMenu()">
-                        <span id="headerUserText" style="font-size: 12px; font-weight: normal;">Guest</span>
-                        <div style="background: white; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
-                            <span style="font-size: 16px;">👤</span>
+                <!-- Floating Profile Icon -->
+                <div class="profile-container" id="userProfileBtn" onclick="toggleProfileMenu()">
+                    <span id="headerUserText" style="font-size: 13px; font-weight: normal; color: white; display: none;">Guest</span>
+                    <div style="background: white; color: #1976d2; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    </div>
+                    
+                    <!-- Dropdown Box -->
+                    <div id="profileDropdown" class="profile-dropdown-content">
+                        <div class="profile-info-row">
+                            <strong style="color:#1976d2;">Account Status:</strong><br>
+                            <span id="dropdownStatusText" style="color: #666;">Guest Mode</span>
                         </div>
-                        
-                        <!-- Dropdown Box -->
-                        <div id="profileDropdown" class="profile-dropdown-content">
-                            <div class="profile-info-row">
-                                <strong style="color:#1976d2;">Account Status:</strong><br>
-                                <span id="dropdownStatusText" style="color: #666;">Guest Mode</span>
-                            </div>
-                            <div class="profile-info-row" id="dropdownQuotaRow" style="display:none;">
-                                <strong style="color:#2e7d32;">Daily Quota:</strong><br>
-                                <span id="dropdownQuotaText" style="color: #666;">0 / 1000</span>
-                            </div>
-                            <button class="profile-logout-btn" onclick="logoutUser()">Exit / Logout</button>
+                        <div class="profile-info-row" id="dropdownQuotaRow" style="display:none;">
+                            <strong style="color:#2e7d32;">Daily Quota:</strong><br>
+                            <span id="dropdownQuotaText" style="color: #666;">0 / 1000</span>
                         </div>
+                        <button class="profile-logout-btn" onclick="logoutUser()">Exit / Logout</button>
                     </div>
                 </div>
             </div>
@@ -248,16 +287,16 @@
                     <table id="spreadsheet">
                         <thead>
                             <tr>
-                                <th colspan="9" style="background-color: #1976d2; color: white;">
+                                <th colspan="9" style="background-color: #1976d2; color: white; padding: 8px; font-size: 13px;">
                                     <div style="display: flex; align-items: center; position: relative;">
-                                        <button class="export-btn" onclick="exportCalculatedDataToCSV()" title="Download Entered Data & Results" style="position: absolute; left: 0;">📥 Export Data</button>
-                                        <span style="flex-grow: 1; text-align: center; font-size:12px;">*Data Entry Cells - (Compulsory)*</span>
+                                        <button class="export-btn" onclick="exportCalculatedDataToCSV()" title="Download Entered Data & Results" style="position: absolute; left: 0;">📥 Export Data (CSV)</button>
+                                        <span style="flex-grow: 1; text-align: center;">*Data Entry Cells - (Compulsory)*</span>
                                     </div>
                                 </th>
-                                <th colspan="7" style="background-color: #0d47a1; color: white; font-size:12px;">*Automatic output for the classification of malnutrition and DBI*</th>
+                                <th colspan="7" style="background-color: #0d47a1; color: white; padding: 8px; font-size: 13px;">*Automatic output for the classification of malnutrition and DBI*</th>
                             </tr>
                             <tr>
-                                <th class="col-sn">SN</th><th class="col-fac">Doctor / Facility Name</th><th class="col-child">Name of Child</th><th class="col-date">Survey Date<br>(MM/DD/YYYY)</th><th class="col-date">Birth Date<br>(MM/DD/YYYY)</th><th class="col-age">Age<br>(M)</th><th class="col-gen">Gender<br>(m/f)</th><th class="col-wt">Weight<br>(kg)</th><th class="col-ht">Height<br>(cm)</th><th class="col-z">Z Score<br>(WAZ)</th><th class="col-stat">WFA<br>Status</th><th class="col-z">Z Score<br>(HAZ)</th><th class="col-stat">HFA<br>Status</th><th class="col-z">Z Score<br>(WHZ)</th><th class="col-stat">WFH<br>Status</th><th class="col-dbi">DBI Category</th>
+                                <th class="col-sn">SN</th><th class="col-fac">Doctor / Facility Name</th><th class="col-child">Name of Child</th><th class="col-date">Survey Date<br>(MM/DD/YYYY)</th><th class="col-date">Birth Date<br>(MM/DD/YYYY)</th><th class="col-age">Age<br>(Months)</th><th class="col-gen">Gender<br>(m/f)</th><th class="col-wt">Weight<br>(kg)</th><th class="col-ht">Height<br>(cm)</th><th class="col-z">Z Score<br>(WAZ)</th><th class="col-stat">Weight For<br>Age Status</th><th class="col-z">Z Score<br>(HAZ)</th><th class="col-stat">Height For<br>Age Status</th><th class="col-z">Z Score<br>(WHZ)</th><th class="col-stat">Weight<br>For Height</th><th class="col-dbi">Double-Burden Index (DBI)<br>Category</th>
                             </tr>
                         </thead>
                         <tbody id="tableBody">
@@ -265,39 +304,50 @@
                     </table>
                 </div>
 
-                <!-- ULTRA COMPACT Pagination & Manual Entry Bar -->
+                <!-- ORIGINAL PAGINATION COMBINED WITH MANUAL ENTRY DPDPA -->
                 <div class="pagination-container">
                     <div id="pageInfoText">Page 1 of 1</div>
-                    <div id="pageNumbers" style="display: flex; gap: 3px;"></div>
+                    <div id="pageNumbers"></div>
                     
                     <div style="display: flex; align-items: center; gap: 10px;">
                         <div id="manualSyncBlock" style="display: none; background: #eaf1fb; border: 1px solid #1976d2; border-radius: 4px; padding: 4px 8px;">
-                            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 11px; font-weight: bold; color: #d32f2f; margin: 0;">
+                            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 11px; font-weight: bold; color: #d32f2f; margin: 0; white-space: nowrap;">
                                 <input type="checkbox" id="dpdpaManualConsentCheck" onchange="toggleManualSyncButton()" style="margin:0;">
-                                [DPDP Act] I certify Verifiable Parental Consent to sync entries to cloud storage.
+                                [DPDP Act] I certify Verifiable Parental Consent to sync entries to cloud.
                             </label>
                         </div>
-                        <button id="btnSyncManual" onclick="syncManualData()" disabled style="display: none; background-color: #1976d2; color: white; border: none; padding: 3px 8px; cursor: not-allowed; font-weight: bold; border-radius: 3px; font-size: 11px; opacity: 0.5;">☁️ Sync</button>
-                        <button id="btnAddRow" onclick="addRow()" style="padding: 3px 8px; background-color: #4285f4; color: white; border: none; cursor:pointer; font-weight:bold; border-radius: 3px; font-size: 11px;">+ Add Single Row</button>
+                        <button id="btnSyncManual" onclick="syncManualData()" disabled style="display: none; background-color: #1976d2; color: white; border: none; padding: 4px 10px; cursor: not-allowed; font-weight: bold; border-radius: 4px; font-size: 12px; opacity: 0.5;">☁️ Sync</button>
+                        <div class="add-row-btn"><button onclick="addRow()" style="padding: 6px 12px; background-color: #4285f4; color: white; border: none; cursor:pointer; font-weight:bold; border-radius: 4px; font-size: 12px;">+ Add Single Row</button></div>
                     </div>
                 </div>
 
-                <!-- ULTRA COMPACT Bulk CSV UI -->
-                <div class="bulk-import-container" id="dpdpaUploadSection">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <div style="font-size: 11px; font-weight: bold;">Bulk CSV (No Headers): Doctor, Child, SurveyDate, DOB, Gen(m/f), Wt(kg), Ht(cm)</div>
-                        <div id="uploadProgress" style="font-weight: bold; color: #d32f2f; font-size: 11px;"></div>
+                <!-- ORIGINAL BULK CSV IMPORT WITH RED/BLUE DPDPA -->
+                <div class="bulk-import-container">
+                    <div>
+                        <strong>Bulk CSV File Upload (O(1) Engine - 250k rows in < 4s):</strong> Save your massive Excel dataset as a <strong>.csv (Comma delimited)</strong> file. Ensure your columns are arranged in exactly this order without missing any headers:
+                        <div style="display: flex; gap: 5px; margin: 8px 0; font-weight: bold; color: #1976d2; flex-wrap: wrap;">
+                            <span style="background: white; padding: 3px 6px; border: 1px solid #1976d2; border-radius: 3px;">Doctor/Facility Name</span>
+                            <span style="background: white; padding: 3px 6px; border: 1px solid #1976d2; border-radius: 3px;">Name of Child</span>
+                            <span style="background: white; padding: 3px 6px; border: 1px solid #1976d2; border-radius: 3px;">Survey Date</span>
+                            <span style="background: white; padding: 3px 6px; border: 1px solid #1976d2; border-radius: 3px;">Birth Date</span>
+                            <span style="background: white; padding: 3px 6px; border: 1px solid #1976d2; border-radius: 3px;">Gender (m/f)</span>
+                            <span style="background: white; padding: 3px 6px; border: 1px solid #1976d2; border-radius: 3px;">Weight (kg)</span>
+                            <span style="background: white; padding: 3px 6px; border: 1px solid #1976d2; border-radius: 3px;">Height (cm)</span>
+                        </div>
                     </div>
-
-                    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-top: 2px;">
-                        <input type="file" id="csvFileInput" accept=".csv" style="font-size: 11px; padding: 2px;">
+                    
+                    <div style="display: flex; align-items: center; gap: 15px; margin-top: 5px;">
+                        <input type="file" id="csvFileInput" accept=".csv" style="width: auto; padding: 5px;">
                         
-                        <label id="registeredConsentBlock" style="display: none; font-size: 11px; color: #d32f2f; font-weight: bold; cursor: pointer; background: #eaf1fb; border: 1px solid #1976d2; padding: 4px 8px; border-radius: 4px;">
-                            <input type="checkbox" id="dpdpaConsentCheck" onchange="toggleUploadButton()" style="vertical-align: middle;"> 
-                            [DPDP Act] I certify verifiable parental consent obtained prior to upload.
-                        </label>
+                        <div id="registeredConsentBlock" style="display: none; background: #eaf1fb; border: 1px solid #1976d2; padding: 6px 10px; border-radius: 4px;">
+                            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 11px; font-weight: bold; color: #d32f2f; margin: 0;">
+                                <input type="checkbox" id="dpdpaConsentCheck" onchange="toggleUploadButton()" style="margin:0;"> 
+                                [DPDP Act] I certify verifiable parental consent obtained prior to upload.
+                            </label>
+                        </div>
 
-                        <button id="btnProcessCsv" onclick="processCSV()" style="background-color: #1976d2; color: white; border: none; padding: 4px 12px; cursor: pointer; font-weight: bold; border-radius: 3px; font-size: 11px;">Upload & Process CSV</button>
+                        <button id="btnProcessCsv" onclick="processCSV()" style="background-color: #1976d2; color: white; border: none; padding: 8px 15px; cursor: pointer; font-weight: bold; border-radius: 4px; font-size: 13px;">Upload & Process CSV Data</button>
+                        <span id="uploadProgress" style="font-weight: bold; color: #d32f2f;"></span>
                     </div>
                 </div>
             </div>
@@ -308,71 +358,119 @@
                     <div class="summary-column">
                         <div class="summary-table">
                             <div class="header-with-btn">
-                                <h3 style="margin: 0; color: #2e7d32; font-size: 14px;">Classification Table</h3>
-                                <button class="export-btn" onclick="exportTableToCSV()" style="background-color: #2e7d32;">📥 Download Table</button>
+                                <h3 style="margin: 0; color: #2e7d32; font-size: 15px;">Classification Table</h3>
+                                <button class="export-btn" onclick="exportTableToCSV()" style="background-color: #2e7d32;">📥 Download Table (CSV)</button>
                             </div>
                             <table style="background: white; height: 100%; border-collapse: collapse;" id="exportTable">
-                                <thead><tr><th style="background-color: #2e7d32; color:white;">Cat</th><th style="background-color: #2e7d32; color:white;">Classification</th><th style="background-color: #2e7d32; color:white;">Count</th><th style="background-color: #2e7d32; color:white;">%</th></tr></thead>
+                                <thead><tr><th style="background-color: #2e7d32; color:white;">Category</th><th style="background-color: #2e7d32; color:white;">Nutritional Classification</th><th style="background-color: #2e7d32; color:white;">Count</th><th style="background-color: #2e7d32; color:white;">%</th></tr></thead>
                                 <tbody id="summaryBody"></tbody>
                             </table>
                         </div>
                     </div>
                     <div class="chart-container">
                         <div class="header-with-btn">
-                            <button class="export-btn" onclick="exportChartAsPNG('dbiChart', 'DBI_Cohort_Chart.png')" style="background-color: #2e7d32; margin-left: auto;">📥 Download Chart</button>
+                            <button class="export-btn" onclick="exportChartAsPNG('dbiChart', 'DBI_Cohort_Chart.png')" style="background-color: #2e7d32; margin-left: auto;">📥 Download Chart (PNG)</button>
                         </div>
                         <div class="chart-wrapper"><canvas id="dbiChart"></canvas></div>
                     </div>
                 </div>
+                
                 <div class="summary-bottom-row">
                     <table style="background: white; width: 100%; border-collapse: collapse;">
                         <tbody id="secondarySummaryBody"></tbody>
                     </table>
+                    <p style="font-size: 12px; color: #555; font-style: italic; margin-top: 10px;">* Click on the blue numbers in the tables above to directly download the filtered CSV list of those specific children.</p>
                 </div>
             </div>
 
             <!-- TAB 3: GRAPHS -->
             <div id="stats" class="tab-content" style="border-color: #673ab7; background-color: #ede7f6;">
+                
                 <div class="exclusion-toggle-bar">
                     <div class="toggle-options">
                         <span>Analysis Data Mode:</span>
                         <label><input type="radio" name="exclToggle" id="toggleTotal" value="total" checked onchange="updateAllDashboards()"> Total (No Exclusion)</label>
                         <label><input type="radio" name="exclToggle" id="toggleExcl" value="exclude" onchange="updateAllDashboards()"> Excluding WHO Flags</label>
                     </div>
-                    <button class="export-btn" style="background-color: #673ab7; font-size: 12px; padding: 6px 12px;" onclick="preparePrintReport()">🖨️ Download PDF Report</button>
+                    <button class="export-btn" style="background-color: #673ab7; font-size: 14px; padding: 8px 15px;" onclick="preparePrintReport()">🖨️ Download Detailed PDF Report</button>
                 </div>
 
                 <div class="stat-section-title">SECTION 1: WEIGHT-FOR-AGE Z-SCORE (WAZ)</div>
-                <div class="stat-section"><div class="stat-chart-container"><canvas id="wazChart"></canvas></div><div class="stat-text-container" id="wazStatsText">Loading statistics...</div></div>
-                
+                <div class="stat-section">
+                    <div class="stat-chart-container"><canvas id="wazChart"></canvas></div>
+                    <div class="stat-text-container" id="wazStatsText">Loading statistics...</div>
+                </div>
+
                 <div class="stat-section-title">SECTION 2: HEIGHT-FOR-AGE Z-SCORE (HAZ)</div>
-                <div class="stat-section"><div class="stat-chart-container"><canvas id="hazChart"></canvas></div><div class="stat-text-container" id="hazStatsText">Loading statistics...</div></div>
-                
+                <div class="stat-section">
+                    <div class="stat-chart-container"><canvas id="hazChart"></canvas></div>
+                    <div class="stat-text-container" id="hazStatsText">Loading statistics...</div>
+                </div>
+
                 <div class="stat-section-title">SECTION 3: WEIGHT-FOR-HEIGHT Z-SCORE (WHZ)</div>
-                <div class="stat-section"><div class="stat-chart-container"><canvas id="whzChart"></canvas></div><div class="stat-text-container" id="whzStatsText">Loading statistics...</div></div>
-                
+                <div class="stat-section">
+                    <div class="stat-chart-container"><canvas id="whzChart"></canvas></div>
+                    <div class="stat-text-container" id="whzStatsText">Loading statistics...</div>
+                </div>
+
                 <div class="scatter-container">
                     <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ede7f6; padding-bottom: 8px; margin-bottom: 10px;">
-                        <div style="font-size: 16px; font-weight: bold; color: #673ab7; text-transform: uppercase;">CONCEPTUAL DENSITY PLOT - DOUBLE BURDEN INDEX</div>
+                        <div style="font-size: 18px; font-weight: bold; color: #673ab7; text-transform: uppercase;">CONCEPTUAL DENSITY PLOT - DOUBLE BURDEN INDEX</div>
+                        <button class="export-btn" onclick="exportChartAsPNG('scatterChart', 'DBI_Conceptual_Density_Plot.png')" style="background-color: #673ab7;">📥 Download Chart (PNG)</button>
                     </div>
                     <div class="scatter-wrapper"><canvas id="scatterChart"></canvas></div>
+                    <div class="exclusion-footer">
+                        <strong>Statistical & Plotting Notes:</strong><br><br>
+                        • Toggle the <strong>"Analysis Data Mode"</strong> at the top of the tab to universally include or exclude flagged outliers from all graphs and tables.<br>
+                        • <strong>Exclusion Criteria (As per WHO Reference):</strong> Data points falling outside the WHO biological plausibility limits are flagged as "out of range" and are excluded when toggled. The limits are: WAZ < -6 or > 5; HAZ < -6 or > 6; WHZ < -5 or > 5.<br>
+                        • <strong>LMS Method:</strong> The computation of percentiles and z-scores applies formulae based on the LMS method [Cole, T. J. ‘The LMS method for constructing normalized growth standards’, European Journal of Clinical Nutrition, 44, 45–60 (1990)]. This is the same methodological approach utilized by the official WHO Anthro software framework.<br>
+                        • The Framework represents the linear mathematical relationship between Weight-for-Age (Y-Axis), Height-for-Age (X-Axis), and Weight-for-Height (Diagonals) originating around the clinical -2 SD intercepts.
+                    </div>
                 </div>
             </div>
 
             <!-- TAB 4: User Guide -->
             <div id="guide" class="tab-content" style="border-color: #e91e63; background-color: #fce4ec;">
-                <div class="guide-box">
-                    <h2>Standard Operating Procedures & Technical Notes</h2>
-                    <p><strong>1. Data Entry:</strong> Provide Doctor Name, Child Name, Survey Date, Birth Date, Gender (m/f), Weight (kg), and Height (cm). Calculations run automatically.</p>
-                    <p><strong>2. Bulk Import:</strong> Ensure columns match the exact sequence above. Remove headers. Use the fast O(1) hash engine below the table.</p>
-                    <p><strong>3. Age & Height Limits:</strong> Tool halts calculations exactly at 1826 days (5.0 years) or Height < 45cm to strictly align with WHO Anthro standards.</p>
-                    <p><strong>4. LMS Method:</strong> Percentiles and z-scores apply formulae based on the LMS method [Cole, 1990], matching the WHO framework.</p>
+                <div class="guide-grid-2">
+                    <div class="guide-box">
+                        <h2>Standard Operating Procedures (SoP)</h2>
+                        <p><strong>Step 1:</strong> Open the web tool... You must enter all data on the tab named <strong>DBI Calculator</strong>.</p>
+                        <p><strong>Step 2:</strong> Type <strong>Doctor</strong> or Facility Name.</p>
+                        <p><strong>Step 3:</strong> Type the <strong>name</strong> of the child.</p>
+                        <p><strong>Step 4:</strong> Enter <strong>Survey date</strong> (MM/DD/YYYY format).</p>
+                        <p><strong>Step 5:</strong> Enter <strong>Birth date</strong> (MM/DD/YYYY format).</p>
+                        <p><strong>Step 6:</strong> Enter <strong>Gender</strong> (m or f).</p>
+                        <p><strong>Step 7:</strong> Enter <strong>Weight</strong> (kg).</p>
+                        <p><strong>Step 8:</strong> Enter <strong>Height</strong> (cm) and press Enter or click outside the box.</p>
+                    </div>
+                    <div class="guide-box">
+                        <h2>Guide for Bulk CSV Import (Open Version)</h2>
+                        <p>This open version uses an optimized O(1) Hash Map engine to process up to 300,000 children in seconds from a CSV file.</p>
+                        <ol>
+                            <li style="margin-bottom: 8px;"><strong>Prepare your Excel file:</strong> Ensure your data is arranged in exactly these 7 columns in this specific order: <em>Doctor/Facility Name, Name of Child, Survey Date, Birth Date, Gender (m/f), Weight (kg), Height (cm)</em>. Delete any title/header rows.</li>
+                            <li style="margin-bottom: 8px;"><strong>Save as CSV:</strong> Go to File > Save As, and choose <strong>CSV (Comma delimited)</strong> format.</li>
+                            <li style="margin-bottom: 8px;"><strong>Upload into the tool:</strong> Go to the <strong>DBI Calculator</strong> tab and scroll to the bottom. Click "Choose File" under the Bulk CSV Upload section and select your file.</li>
+                            <li><strong>Process:</strong> Click the blue <strong>Upload & Process CSV Data</strong> button.</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="tech-note">
+                    <h3>Technical Note: Calculation Assumptions</h3>
+                    <p><strong>DBI Classification Limits:</strong> DBI classification uses a Z‑score less than −2 to classify low weight-for-age as “underweight”, low length/height-for-age as “stunted”, and low weight-for-length as “wasted”. Similarly a Z‑score above +2 is used to classify weight-for-height as “Overweight/Obesity”.</p>
+                    <p><strong>LMS Method:</strong> The computation of percentiles and z-scores applies formulae based on the LMS method [Cole, T. J. ‘The LMS method for constructing normalized growth standards’, European Journal of Clinical Nutrition, 44, 45–60 (1990)]. This is the same methodological approach utilized by the official WHO Anthro software framework.</p>
+                    <p><strong>Age Limit:</strong> Tool will not function for children > 5 years (>59 months) per WHO 2006 standards. Note: Calculations cease exactly at 1826 days (5.0 years) to strictly align with the WHO Anthro software engine cutoff.</p>
+                    <p><strong>Minimum Length:</strong> No classification for length < 45 cm per WHO standards.</p>
+                </div>
+                <div class="copyright-notice">
+                    &copy; 2026 Phadke, Gautam, Nair, and Rade. All rights reserved. The underlying methodology, logic, and interface may not be reproduced, copied, or distributed without explicit written permission.
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- FORMAL HIDDEN PRINT REPORT ARCHITECTURE -->
+    <!-- =========================================================
+         HIDDEN FORMAL REPORT ENGINE
+         ========================================================= -->
     <div id="formalPrintReport">
         <div class="print-page cover-page">
             <div>
@@ -147904,7 +148002,6 @@
   }
 ];
     
-
     // ==========================================
     // DEPLOYMENT CONTROLS & GATEKEEPER LOGIC
     // ==========================================
@@ -147993,6 +148090,7 @@
         isAuthenticatedUser = false;
         
         document.getElementById('headerUserText').innerText = "Guest";
+        document.getElementById('headerUserText').style.display = 'block';
         document.getElementById('dropdownStatusText').innerText = "Guest Mode (Local)";
         document.getElementById('dropdownQuotaRow').style.display = 'none';
         
@@ -148015,6 +148113,7 @@
         isAuthenticatedUser = true;
 
         document.getElementById('headerUserText').innerText = email.split('@')[0];
+        document.getElementById('headerUserText').style.display = 'block';
         document.getElementById('dropdownStatusText').innerText = email;
         document.getElementById('dropdownQuotaRow').style.display = 'block';
         document.getElementById('dropdownQuotaText').innerText = "0 / 1000";
@@ -148027,14 +148126,12 @@
         toggleManualSyncButton();
 
         if(gkAuthMode === 'login') {
-            globalData = fetchHydratedDataFromDB();
+            // Load 10 clean slate rows
+            globalData = [];
+            for(let i=1; i<=10; i++) globalData.push(createEmptyRow(i));
             currentPage = 1;
             renderTable();
             updateAllDashboards();
-            
-            if(globalData.length > 0 && globalData[0].fac !== "") {
-                alert("Welcome back! Your previously synced data has been loaded from the secure database.");
-            }
         }
     }
 
@@ -148073,20 +148170,6 @@
         syncBtn.disabled = !isChecked;
         syncBtn.style.opacity = isChecked ? '1' : '0.5';
         syncBtn.style.cursor = isChecked ? 'pointer' : 'not-allowed';
-    }
-
-    function fetchHydratedDataFromDB() {
-        // Returning an empty array so no fake children (Aarav/Diya) appear.
-        let mockDBData = [];
-        
-        if (mockDBData.length === 0) {
-            for(let i=1; i<=10; i++) mockDBData.push(createEmptyRow(i));
-        } else {
-            mockDBData.forEach(r => {
-                r.calc = calculateLogicFast(r.fac, r.child, r.sDate, r.bDate, r.gender, parseFloat(r.wt), parseFloat(r.ht));
-            });
-        }
-        return mockDBData;
     }
 
     function syncManualData() {
