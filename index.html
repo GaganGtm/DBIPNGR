@@ -7,58 +7,103 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     <style>
         /* Frozen Shell Layout */
-        html, body { height: 100%; margin: 0; padding: 0; overflow: hidden; font-family: Arial, sans-serif; background-color: #f8f9fa; 
+        html, body { height: 100%; margin: 0; padding: 0; overflow: hidden; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; 
                -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
         
         #mainAppContainer { display: none; flex-direction: column; height: 100%; }
 
         /* ==========================================
-           GATEKEEPER OVERLAY CSS (PROFESSIONAL UX)
+           GATEKEEPER SPLIT-SCREEN OVERLAY (NEW UX)
            ========================================== */
-        #gatekeeperOverlay { position: fixed; inset: 0; background: #f4f7fe; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow-y: auto; padding: 20px;}
-        .gk-title-box { text-align: center; margin-bottom: 40px; }
-        .gk-main-title { color: #1976d2; font-size: 34px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; margin: 0 0 10px 0; }
-        .gk-sub-title { color: #555; font-size: 16px; font-weight: bold; margin: 0; }
+        #gatekeeperOverlay { position: fixed; inset: 0; background: #ffffff; z-index: 9999; display: flex; flex-direction: row; overflow: hidden;}
         
-        .gk-cards-wrapper { display: flex; gap: 40px; width: 100%; max-width: 1000px; justify-content: center; align-items: stretch; min-height: 480px;}
-        .gk-card { flex: 1; background: white; border: 3px solid #4285f4; border-radius: 8px; padding: 40px; display: flex; flex-direction: column; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
-        .gk-card-header { text-align: center; margin-bottom: 30px; }
-        .gk-icons { display: flex; justify-content: center; gap: 15px; margin-bottom: 15px; }
-        .gk-card-title { font-size: 22px; font-weight: 900; margin: 0;}
-        .title-guest { color: #2e7d32; }
-        .title-reg { color: #1976d2; }
+        /* Left Side: Illustration Panel */
+        .gk-left {
+            flex: 1.2;
+            background-color: #e0f2f1; /* Soft fallback color */
+            /* 
+               IMPORTANT: Put your generated doctor image URL below! 
+               Edit your image first to reduce the hand/phone size, then link it here.
+            */
+            background-image: url('YOUR_DOCTOR_IMAGE.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-right: 1px solid #ccc;
+            box-shadow: 2px 0 15px rgba(0,0,0,0.1);
+            z-index: 2;
+        }
+
+        /* Right Side: Interactive Portal */
+        .gk-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            background: #fdfdfd;
+            position: relative;
+        }
+
+        .gk-right-content {
+            width: 100%;
+            max-width: 380px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Mother & Child SVG Icon */
+        .gk-logo-svg { width: 70px; height: 70px; color: #2c5282; margin-bottom: 10px; }
+        .gk-app-name { font-size: 18px; font-weight: bold; color: #333; margin-bottom: 25px; letter-spacing: 0.5px; }
+        .gk-welcome { font-size: 26px; font-weight: 600; color: #1a202c; margin-bottom: 30px; text-align: center; }
+
+        /* Input Fields with inner icons */
+        .gk-input-group { position: relative; width: 100%; margin-bottom: 20px; }
+        .gk-input-icon { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: #718096; }
+        .gk-input { width: 100%; padding: 14px 14px 14px 45px; font-size: 15px; border: 1px solid #cbd5e0; border-radius: 6px; box-sizing: border-box; outline: none; background: #fff; transition: 0.2s;}
+        .gk-input:focus { border-color: #2b6cb0; box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.1); }
+
+        /* Actions & Buttons */
+        .gk-forgot { width: 100%; text-align: right; margin-bottom: 25px; font-size: 13px; color: #2b6cb0; cursor: pointer; text-decoration: none;}
+        .gk-forgot:hover { text-decoration: underline; }
         
-        .gk-toggle-group { display: flex; gap: 10px; margin-bottom: 20px; }
-        .gk-toggle-btn { flex: 1; padding: 12px; font-weight: bold; cursor: pointer; border-radius: 4px; font-size: 14px; text-align: center; transition: 0.2s; border: 2px solid #1976d2; }
-        .gk-toggle-active { background-color: #1976d2; color: white; }
-        .gk-toggle-inactive { background-color: white; color: #1976d2; }
-        
-        .gk-input { width: 100%; padding: 12px; font-size: 14px; margin-bottom: 15px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; outline: none;}
-        .gk-input:focus { border-color: #1976d2; }
-        
-        .gk-btn { background-color: #1976d2; color: white; border: none; padding: 14px; cursor: pointer; font-weight: bold; border-radius: 4px; font-size: 16px; width: 100%; transition: 0.2s; text-transform: uppercase; margin-top: auto;}
-        .gk-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-        .gk-btn:hover:not(:disabled) { background-color: #1565c0; }
-        .gk-btn-green { background-color: #2e7d32; }
-        .gk-btn-green:hover:not(:disabled) { background-color: #1b5e20; }
-        
-        .gk-dpdpa-note { font-size: 11px; color: #555; text-align: justify; margin-top: 20px; font-style: italic; line-height: 1.4; border-top: 1px solid #eee; padding-top: 15px;}
-        .gk-restricted-box { background: #fce4ec; border: 1px solid #d32f2f; border-radius: 4px; padding: 40px 20px; text-align: center; margin-top: 20px;}
+        .gk-btn { width: 100%; background-color: #2b6cb0; color: white; border: none; padding: 15px; border-radius: 6px; font-size: 16px; font-weight: bold; text-transform: uppercase; cursor: pointer; transition: 0.2s; letter-spacing: 1px; box-shadow: 0 4px 6px rgba(43, 108, 176, 0.2);}
+        .gk-btn:disabled { background-color: #a0aec0; cursor: not-allowed; box-shadow: none; }
+        .gk-btn:hover:not(:disabled) { background-color: #2c5282; transform: translateY(-1px); }
+
+        /* Dynamic View Toggles */
+        .gk-switch-text { font-size: 14px; color: #4a5568; margin-top: 30px; text-align: center; line-height: 1.6;}
+        .gk-link { color: #2b6cb0; font-weight: bold; cursor: pointer; text-decoration: none; }
+        .gk-link:hover { text-decoration: underline; }
+
+        /* View Containers */
+        .gk-view { display: none; width: 100%; flex-direction: column; align-items: center; animation: fadeIn 0.3s ease;}
+        .gk-view.active { display: flex; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* DPDP Act Box */
+        .gk-dpdpa-box { background: #eaf1fb; border: 1px solid #1976d2; border-radius: 6px; padding: 12px; margin-bottom: 25px; width: 100%; box-sizing: border-box;}
+        .gk-dpdpa-label { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; font-size: 12px; font-weight: bold; color: #d32f2f; line-height: 1.4; text-align: justify; margin: 0;}
+
+        /* Footer */
+        .gk-footer { position: absolute; bottom: 20px; text-align: center; font-size: 12px; color: #718096; width: 100%; }
 
         /* ==========================================
-           MAIN APP UI (ORIGINAL RESTORED)
+           MAIN APP UI (ORIGINAL RESTORED + UPGRADES)
            ========================================== */
         .sticky-top { flex: 0 0 auto; padding: 10px 10px 0 10px; background-color: #f8f9fa; z-index: 1000; }
         
         /* EXACT ORIGINAL HEADER WITH ABSOLUTE PROFILE POSITIONING */
         .header-title { position: relative; background-color: #4285f4; color: white; padding: 12px; text-align: center; font-weight: bold; font-size: 22px; margin-bottom: 0; border-radius: 4px; transition: background-color 0.3s;}
         
-        /* Dropdown Profile Menu (Floats right, doesn't affect centering) */
+        /* Dropdown Profile Menu (Floats right, zero layout distortion) */
         .profile-container { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); display: flex; align-items: center; gap: 8px; cursor: pointer; }
-        .profile-dropdown-content { display: none; position: absolute; right: 0; top: 40px; background-color: #ffffff; min-width: 220px; box-shadow: 0px 8px 16px rgba(0,0,0,0.2); z-index: 2000; border-radius: 6px; overflow: hidden; border: 1px solid #ccc; font-family: Arial, sans-serif;}
+        .profile-dropdown-content { display: none; position: absolute; right: 0; top: 40px; background-color: #ffffff; min-width: 220px; box-shadow: 0px 8px 16px rgba(0,0,0,0.2); z-index: 2000; border-radius: 6px; overflow: hidden; border: 1px solid #ccc; font-family: Arial, sans-serif; font-weight: normal; text-align: left; letter-spacing: normal; text-transform: none;}
         .profile-dropdown-content.show { display: block; }
-        .profile-info-row { padding: 12px; border-bottom: 1px solid #eee; color: #333; font-size: 12px; text-align: left; font-weight: normal; line-height: 1.4;}
-        .profile-logout-btn { background-color: #d32f2f; color: white; text-align: center; padding: 10px; cursor: pointer; font-weight: bold; font-size: 12px; transition: 0.2s; border: none; width: 100%;}
+        .profile-info-row { padding: 12px; border-bottom: 1px solid #eee; color: #333; font-size: 13px; line-height: 1.4;}
+        .profile-logout-btn { background-color: #d32f2f; color: white; text-align: center; padding: 10px; cursor: pointer; font-weight: bold; font-size: 13px; transition: 0.2s; border: none; width: 100%;}
         .profile-logout-btn:hover { background-color: #b71c1c; }
 
         .tab-container { margin-bottom: 0; margin-top: 8px; display: flex; width: 100%; }
@@ -92,15 +137,14 @@
         #pageInfoText { font-weight: bold; font-size: 13px; color: #1976d2; flex: 1; text-align: left; }
         #pageNumbers { flex: 2; display: flex; gap: 5px; flex-wrap: wrap; justify-content: center; align-items: center;}
         .page-num-btn { background: white; color: #1976d2; border: 1px solid #90caf9; padding: 4px 10px; cursor: pointer; font-weight: bold; border-radius: 4px; font-size: 12px; transition: 0.2s;}
-        .page-num-btn:hover:not(:disabled) { background: #bbdefb; }
         .page-num-btn.active { background: #1976d2; color: white; border-color: #1976d2; cursor: default; }
-        .page-num-btn:disabled { color: #aaa; border-color: #ddd; cursor: not-allowed; }
+        .add-row-btn { flex: 1; text-align: right; }
         
         .bulk-import-container { flex: 0 0 auto; background: #e8f0fe; padding: 10px; margin-top: 5px; border: 1px solid #4285f4; border-radius: 5px; font-size: 13px; display: flex; flex-direction: column; gap: 10px;}
 
-        /* Styled DPDPA Notice Boxes (Blue Box / Red Text) */
-        .dpdpa-inline-box { display: none; background: #eaf1fb; border: 1px solid #1976d2; border-radius: 4px; padding: 6px 10px; align-items: center; margin: 0; flex-grow: 1;}
-        .dpdpa-inline-text { color: #d32f2f; font-weight: bold; font-size: 12px; margin: 0; margin-left: 6px; cursor: pointer; white-space: nowrap;}
+        /* RED/BLUE DPDPA COMPONENT STYLING */
+        .dpdpa-inline-box { display: none; background: #eaf1fb; border: 1px solid #1976d2; border-radius: 4px; padding: 6px 12px; align-items: center; margin: 0; }
+        .dpdpa-inline-text { color: #d32f2f; font-weight: bold; font-size: 12px; margin: 0; margin-left: 8px; cursor: pointer; white-space: nowrap;}
 
         .summary-top-row { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; align-items: stretch; }
         .summary-column { flex: 1; min-width: 400px; display: flex; flex-direction: column; }
@@ -111,17 +155,14 @@
         .summary-table { flex-grow: 1; display: flex; flex-direction: column; background: white; padding: 15px; border-radius: 8px; border: 1px solid #ccc; box-shadow: 0 2px 5px rgba(0,0,0,0.05);}
         .header-with-btn { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 10px; }
         .export-btn { background-color: #4caf50; color: white; border: none; padding: 5px 12px; cursor: pointer; font-weight: bold; border-radius: 4px; font-size: 12px; transition: background 0.2s; white-space: nowrap; }
-        .export-btn:hover { background-color: #388e3c; }
-        .dl-link { color: #1976d2; font-weight: bold; text-decoration: underline; cursor: pointer; transition: color 0.2s; display: block; width: 100%; height: 100%;}
-        .dl-link:hover { color: #d32f2f; }
+        .dl-link { color: #1976d2; font-weight: bold; text-decoration: underline; cursor: pointer; display: block; width: 100%; height: 100%;}
         .exclusion-toggle-bar { display: flex; flex-direction: row; justify-content: space-between; align-items: center; background: white; padding: 12px 20px; border-radius: 8px; border: 1px solid #ccc; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); white-space: nowrap; }
-        .toggle-options { display: flex; gap: 20px; align-items: center; font-size: 15px; color: #673ab7; font-weight: bold; margin-right: auto; white-space: nowrap;}
-        .toggle-options label { cursor: pointer; display: flex; align-items: center; gap: 6px; white-space: nowrap; }
-        .toggle-options input[type="radio"] { transform: scale(1.2); cursor: pointer; margin: 0;}
-        .stat-section-title { width: 100%; font-size: 18px; font-weight: 800; color: #673ab7; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .toggle-options { display: flex; gap: 20px; align-items: center; font-size: 15px; color: #673ab7; font-weight: bold; margin-right: auto;}
+        .toggle-options label { cursor: pointer; display: flex; align-items: center; gap: 6px;}
+        .stat-section-title { width: 100%; font-size: 18px; font-weight: 800; color: #673ab7; margin-bottom: 12px; text-transform: uppercase; }
         .stat-section { display: flex; flex-direction: row; height: 480px; max-height: 480px; gap: 20px; background: #fdfdfd; border: 1px solid #ccc; border-radius: 8px; padding: 20px; margin-bottom: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); box-sizing: border-box; }
         .stat-chart-container { width: 55%; height: 100%; display: flex; flex-direction: column; justify-content: center; box-sizing: border-box;}
-        .stat-text-container { width: 45%; height: 100%; overflow: hidden; background: #ffffff; border: 1px solid #bdbdbd; border-radius: 5px; padding: 20px; box-shadow: inset 0 0 5px rgba(0,0,0,0.02); box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between;}
+        .stat-text-container { width: 45%; height: 100%; overflow: hidden; background: #ffffff; border: 1px solid #bdbdbd; border-radius: 5px; padding: 20px; box-shadow: inset 0 0 5px rgba(0,0,0,0.02); display: flex; flex-direction: column; justify-content: space-between;}
         .stats-grid-table { width: 100%; border-collapse: collapse; font-family: "Courier New", Courier, monospace; font-size: 12.5px; font-weight: 700; color: #000; line-height: 1.5; }
         .stats-grid-table td { padding: 4px 0; vertical-align: top; border-bottom: 1px dashed #eee; }
         .stats-grid-table tr:last-child td { border-bottom: none; }
@@ -180,78 +221,132 @@
 <body>
 
     <!-- =========================================================
-         THE GATEKEEPER OVERLAY (LANDING PAGE)
+         THE GATEKEEPER OVERLAY (SPLIT-SCREEN LANDING PAGE)
          ========================================================= -->
     <div id="gatekeeperOverlay">
-        <div class="gk-title-box">
-            <h1 class="gk-main-title">Double Burden Index (DBI) Calculator</h1>
-            <h2 class="gk-sub-title">by Phadke, Gautam, Nair and Rade, 2026</h2>
-        </div>
         
-        <div class="gk-cards-wrapper">
-            <!-- USER MODE: GUEST ACCESS -->
-            <div class="gk-card">
-                <div class="gk-card-header">
-                    <div class="gk-icons">
-                        <svg width="45" height="45" viewBox="0 0 24 24" fill="none" stroke="#2e7d32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                        <svg width="45" height="45" viewBox="0 0 24 24" fill="none" stroke="#2e7d32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                    </div>
-                    <div class="gk-card-title title-guest">User Mode: Guest Access</div>
-                </div>
+        <!-- Left Side: Doctor Image Placeholder -->
+        <div class="gk-left"></div>
+
+        <!-- Right Side: Interactive Portal -->
+        <div class="gk-right">
+            <div class="gk-right-content">
                 
-                <div id="gkGuestActive" style="display: none; flex-direction: column; height: 100%;">
-                    <div style="flex-grow: 1;"></div>
-                    <div style="text-align: center; margin-bottom: 20px;">
-                        <label style="display: inline-flex; align-items: flex-start; gap: 8px; cursor: pointer; text-align: left;">
-                            <input type="checkbox" id="gkGuestConsent" onchange="validateGuestGate()" style="margin-top: 4px; transform: scale(1.2);">
-                            <span style="font-size: 13px; font-weight: bold; color: #d32f2f;">[DPDP Act Notice] I acknowledge this is a zero-knowledge local session. I understand no data will be backed up or synced to the cloud.</span>
+                <!-- SVG Mother & Child Logo -->
+                <svg class="gk-logo-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+
+                <div class="gk-app-name">DBI Calculator</div>
+                <div class="gk-welcome">Welcome to DBI Portal</div>
+
+                <!-- VIEW 1: LOGIN -->
+                <div id="gkViewLogin" class="gk-view active">
+                    
+                    <div class="gk-input-group">
+                        <svg class="gk-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        <input type="email" id="gkLoginEmail" class="gk-input" placeholder="Username / Email Address">
+                    </div>
+
+                    <div class="gk-input-group" style="margin-bottom: 10px;">
+                        <svg class="gk-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                        <input type="password" id="gkLoginPass" class="gk-input" placeholder="Password">
+                    </div>
+
+                    <a href="#" class="gk-forgot">Forgot Password?</a>
+
+                    <div class="gk-dpdpa-box">
+                        <label class="gk-dpdpa-label">
+                            <input type="checkbox" id="gkLoginConsent" onchange="validateGkForms()" style="margin-top: 2px; transform: scale(1.2);">
+                            <span>[DPDP Act Notice] I am an authorized Data Fiduciary and agree to uphold all statutory parental consent duties under Section 9.</span>
                         </label>
                     </div>
-                    <button id="btnEnterGuest" class="gk-btn gk-btn-green" onclick="enterAsGuest()" disabled>Enter as Guest</button>
-                    <div class="gk-desc">This mode is restricted to local browser calculations only. It does not utilize backend storage or quota limits.</div>
-                </div>
 
-                <div id="gkGuestLocked" style="display: flex; flex-direction: column; height: 100%; justify-content: center; align-items: center; text-align: center;">
-                    <div class="gk-restricted-box">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="#d32f2f" stroke="#d32f2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 10px;"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="15" y1="9" x2="9" y2="15" stroke="white"></line><line x1="9" y1="9" x2="15" y2="15" stroke="white"></line></svg>
-                        <div style="font-size: 18px; font-weight: bold; color: #b71c1c; margin-bottom: 10px;">Guest Access Restricted</div>
-                        <div style="font-size: 14px; color: #d32f2f; line-height: 1.4;">During this initial rollout phase, you must log in to an authorized registered account to process data.</div>
+                    <button id="btnGkLogin" class="gk-btn" onclick="submitGatekeeper('login')" disabled>Login</button>
+                    
+                    <div class="gk-switch-text">
+                        Don't have an account? <span class="gk-link" onclick="switchGkView('register')">Sign Up</span><br><br>
+                        Want to process data locally? <span class="gk-link" onclick="switchGkView('guest')">Continue as Guest</span>
                     </div>
                 </div>
+
+                <!-- VIEW 2: REGISTER -->
+                <div id="gkViewRegister" class="gk-view">
+                    
+                    <div class="gk-input-group">
+                        <svg class="gk-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        <input type="text" id="gkRegName" class="gk-input" placeholder="Doctor / Practitioner Name">
+                    </div>
+                    
+                    <div class="gk-input-group">
+                        <svg class="gk-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                        <input type="text" id="gkRegFacility" class="gk-input" placeholder="Facility / Clinic Name">
+                    </div>
+
+                    <div class="gk-input-group">
+                        <svg class="gk-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        <input type="email" id="gkRegEmail" class="gk-input" placeholder="Email Address">
+                    </div>
+
+                    <div class="gk-input-group">
+                        <svg class="gk-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                        <input type="password" id="gkRegPass" class="gk-input" placeholder="Create Password">
+                    </div>
+
+                    <div class="gk-dpdpa-box">
+                        <label class="gk-dpdpa-label">
+                            <input type="checkbox" id="gkRegConsent" onchange="validateGkForms()" style="margin-top: 2px; transform: scale(1.2);">
+                            <span>[DPDP Act] I unconditionally consent to the processing of my account details and attest to acquiring necessary parental consent for data uploads.</span>
+                        </label>
+                    </div>
+
+                    <button id="btnGkRegister" class="gk-btn" onclick="submitGatekeeper('register')" disabled>Create Account</button>
+                    
+                    <div class="gk-switch-text">
+                        Already have an account? <span class="gk-link" onclick="switchGkView('login')">Login</span><br><br>
+                        <span class="gk-link" onclick="switchGkView('guest')">Continue as Guest</span>
+                    </div>
+                </div>
+
+                <!-- VIEW 3: GUEST -->
+                <div id="gkViewGuest" class="gk-view">
+                    
+                    <svg style="color:#2e7d32; width:50px; height:50px; margin-bottom: 20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+
+                    <div style="font-size: 15px; color: #4a5568; line-height: 1.6; text-align: center; margin-bottom: 30px;">
+                        <strong>Privacy by Design:</strong> Compute epidemiological z-scores locally on your device without leaving a digital footprint. No data is stored on servers.
+                    </div>
+
+                    <!-- Condition: If Guest mode enabled -->
+                    <div id="gkGuestUnlockedBox" style="display: none; width: 100%;">
+                        <div class="gk-dpdpa-box" style="border-color: #4caf50; background: #e8f5e9;">
+                            <label class="gk-dpdpa-label" style="color: #1b5e20;">
+                                <input type="checkbox" id="gkGuestConsentCheck" onchange="validateGkForms()" style="margin-top: 2px; transform: scale(1.2);">
+                                <span>I acknowledge this is a zero-knowledge local session. No data will be backed up or synced to the cloud.</span>
+                            </label>
+                        </div>
+                        <button id="btnGkGuest" class="gk-btn gk-btn-green" onclick="submitGatekeeper('guest')" disabled>Enter as Guest</button>
+                    </div>
+
+                    <!-- Condition: If Guest mode disabled -->
+                    <div id="gkGuestLockedBox" style="display: none; background: #fff5f5; border: 1px solid #fc8181; border-radius: 6px; padding: 25px; text-align: center; width: 100%; box-sizing: border-box;">
+                        <svg width="35" height="35" viewBox="0 0 24 24" fill="#e53e3e" stroke="white" stroke-width="2" style="margin-bottom:10px;"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                        <div style="font-size: 16px; font-weight: bold; color: #c53030; margin-bottom: 8px;">Access Restricted</div>
+                        <div style="font-size: 13px; color: #e53e3e; line-height: 1.5;">During this initial rollout phase, you must log in to an authorized registered account to process data.</div>
+                    </div>
+                    
+                    <div class="gk-switch-text" style="margin-top: 40px;">
+                        Want to save data to the cloud? <br><span class="gk-link" onclick="switchGkView('login')">Login to Registered Account</span>
+                    </div>
+                </div>
+
             </div>
-
-            <!-- USER MODE: REGISTERED USER -->
-            <div class="gk-card">
-                <div class="gk-card-header">
-                    <div class="gk-icons">
-                        <svg width="45" height="45" viewBox="0 0 24 24" fill="none" stroke="#1976d2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                        <svg width="45" height="45" viewBox="0 0 24 24" fill="none" stroke="#1976d2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 16.2A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"></path><polyline points="16 16 12 20 8 16"></polyline><line x1="12" y1="12" x2="12" y2="20"></line></svg>
-                    </div>
-                    <div class="gk-card-title title-reg">User Mode: Registered User</div>
-                </div>
-                
-                <div class="gk-toggle-group">
-                    <div id="tabGkLog" class="gk-toggle-btn gk-toggle-active" onclick="setGkTab('login')">Login</div>
-                    <div id="tabGkReg" class="gk-toggle-btn gk-toggle-inactive" onclick="setGkTab('register')">Register</div>
-                </div>
-
-                <div id="gkRegFields" style="display: none;">
-                    <input type="text" id="gkName" class="gk-input" placeholder="Doctor / Practitioner Name">
-                    <input type="text" id="gkFacility" class="gk-input" placeholder="Facility / Clinic Name">
-                </div>
-
-                <input type="email" id="gkEmail" class="gk-input" placeholder="Email Address">
-                <input type="password" id="gkPassword" class="gk-input" placeholder="Password">
-
-                <div id="gkDpdpaBlock" style="display: none; margin-bottom: 20px;">
-                    <label style="display: flex; gap: 8px; align-items: flex-start; cursor: pointer; text-align: left;">
-                        <input type="checkbox" id="gkRegConsentCheck" onchange="validateRegGate()" style="margin-top: 4px; transform: scale(1.2);">
-                        <span style="font-size: 12px; font-weight: bold; color: #d32f2f;">[DPDP Act Notice] I am an authorized Data Fiduciary. I consent to account processing and agree to uphold all statutory parental consent duties under Section 9 prior to syncing data.</span>
-                    </label>
-                </div>
-
-                <button id="btnEnterReg" class="gk-btn" onclick="submitAuth()">Sign In</button>
-                <div class="gk-desc">This mode connects to secure cloud storage, enabling daily quota tracking (max 1000 entries) and data persistence across sessions.</div>
+            
+            <div class="gk-footer">
+                Copyright DBI Calculator, Phadke, Gautam, Nair and Rade, 2026.
             </div>
         </div>
     </div>
@@ -267,7 +362,7 @@
             <div class="header-title" id="mainHeaderTitle">
                 Double Burden Index (DBI) Calculator by Phadke, Gautam, Nair and Rade, 2026
                 
-                <!-- Floating Profile Icon -->
+                <!-- Floating Profile Icon (Will not distort layout) -->
                 <div class="profile-container" id="userProfileBtn" onclick="toggleProfileMenu()">
                     <span id="headerUserText" style="font-size: 14px; font-weight: normal; color: white; display: none;">Guest</span>
                     <div style="background: white; color: #1976d2; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,0.3);">
@@ -334,7 +429,7 @@
                                 [DPDP Act] I certify Verifiable Parental Consent to sync entries to cloud.
                             </label>
                         </div>
-                        <button id="btnSyncManual" onclick="syncManualData()" disabled style="display: none; background-color: #1976d2; color: white; border: none; padding: 6px 15px; cursor: not-allowed; font-weight: bold; border-radius: 4px; font-size: 13px; opacity: 0.5;">☁️ Sync</button>
+                        <button id="btnSyncManual" onclick="syncAppManualData()" disabled style="display: none; background-color: #1976d2; color: white; border: none; padding: 6px 15px; cursor: not-allowed; font-weight: bold; border-radius: 4px; font-size: 13px; opacity: 0.5;">☁️ Sync</button>
                         <div class="add-row-btn"><button onclick="addRow()" style="padding: 6px 12px; background-color: #4285f4; color: white; border: none; cursor:pointer; font-weight:bold; border-radius: 4px; font-size: 12px; white-space:nowrap;">+ Add Single Row</button></div>
                     </div>
                 </div>
@@ -148020,6 +148115,7 @@
   }
 ];
     
+
     // ==========================================
     // DEPLOYMENT CONTROLS & GATEKEEPER LOGIC
     // ==========================================
@@ -148027,19 +148123,9 @@
     // Set to true to unlock Phase 2 Guest Mode globally.
     const ENABLE_GUEST_MODE = false; 
     let isAuthenticatedUser = false; 
-    let gkAuthMode = 'login'; 
+    let currentGkView = 'login'; 
 
     window.addEventListener('DOMContentLoaded', () => {
-        const gkActive = document.getElementById('gkGuestActive');
-        const gkLocked = document.getElementById('gkGuestLocked');
-        if (ENABLE_GUEST_MODE) {
-            gkActive.style.display = 'flex';
-            gkLocked.style.display = 'none';
-        } else {
-            gkActive.style.display = 'none';
-            gkLocked.style.display = 'flex';
-        }
-        
         try {
             initMaps();
             for(let i=1; i<=10; i++) { globalData.push(createEmptyRow(i)); }
@@ -148049,58 +148135,75 @@
         }
     });
 
-    function validateGuestGate() {
-        const isChecked = document.getElementById('gkGuestConsent').checked;
-        const btn = document.getElementById('btnEnterGuest');
-        btn.disabled = !isChecked;
-    }
-
-    function setGkTab(mode) {
-        gkAuthMode = mode;
-        const btnReg = document.getElementById('tabGkReg');
-        const btnLog = document.getElementById('tabGkLog');
-        const fieldsReg = document.getElementById('gkRegFields');
-        const dpdpaBlock = document.getElementById('gkDpdpaBlock');
-        const submitBtn = document.getElementById('btnEnterReg');
-
-        if (mode === 'register') {
-            btnReg.classList.add('gk-toggle-active'); btnReg.classList.remove('gk-toggle-inactive');
-            btnLog.classList.remove('gk-toggle-active'); btnLog.classList.add('gk-toggle-inactive');
-            fieldsReg.style.display = 'block';
-            dpdpaBlock.style.display = 'block';
-            submitBtn.innerText = 'Register';
-            validateRegGate();
-        } else {
-            btnLog.classList.add('gk-toggle-active'); btnLog.classList.remove('gk-toggle-inactive');
-            btnReg.classList.remove('gk-toggle-active'); btnReg.classList.add('gk-toggle-inactive');
-            fieldsReg.style.display = 'none';
-            dpdpaBlock.style.display = 'none';
-            submitBtn.innerText = 'Sign In';
-            submitBtn.disabled = false;
-        }
-    }
-
-    function validateRegGate() {
-        if (gkAuthMode !== 'register') return;
-        const isChecked = document.getElementById('gkRegConsentCheck').checked;
-        document.getElementById('btnEnterReg').disabled = !isChecked;
-    }
-
-    function toggleProfileMenu() {
-        document.getElementById("profileDropdown").classList.toggle("show");
-    }
-
-    // Close the dropdown menu if the user clicks outside of it
-    window.onclick = function(event) {
-        if (!event.target.closest('#userProfileBtn')) {
-            var dropdowns = document.getElementsByClassName("profile-dropdown-content");
-            for (var i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.classList.contains('show')) {
-                    openDropdown.classList.remove('show');
-                }
+    function switchGkView(view) {
+        document.querySelectorAll('.gk-view').forEach(el => el.classList.remove('active'));
+        
+        if(view === 'login') {
+            document.getElementById('gkViewLogin').classList.add('active');
+        } else if (view === 'register') {
+            document.getElementById('gkViewRegister').classList.add('active');
+        } else if (view === 'guest') {
+            document.getElementById('gkViewGuest').classList.add('active');
+            if (ENABLE_GUEST_MODE) {
+                document.getElementById('gkGuestUnlockedBox').style.display = 'block';
+                document.getElementById('gkGuestLockedBox').style.display = 'none';
+            } else {
+                document.getElementById('gkGuestUnlockedBox').style.display = 'none';
+                document.getElementById('gkGuestLockedBox').style.display = 'block';
             }
         }
+        currentGkView = view;
+        validateGkForms();
+    }
+
+    function validateGkForms() {
+        if(currentGkView === 'login') {
+            const isChecked = document.getElementById('gkLoginConsent').checked;
+            document.getElementById('btnGkLogin').disabled = !isChecked;
+        } else if (currentGkView === 'register') {
+            const isChecked = document.getElementById('gkRegConsent').checked;
+            document.getElementById('btnGkRegister').disabled = !isChecked;
+        } else if (currentGkView === 'guest') {
+            const isChecked = document.getElementById('gkGuestConsentCheck').checked;
+            document.getElementById('btnGkGuest').disabled = !isChecked;
+        }
+    }
+
+    function submitGatekeeper(mode) {
+        if (mode === 'guest') {
+            enterAsGuest();
+            return;
+        }
+
+        let email = "";
+        if (mode === 'login') email = document.getElementById('gkLoginEmail').value.trim();
+        if (mode === 'register') email = document.getElementById('gkRegEmail').value.trim();
+
+        if (!email) { alert("Please enter your email."); return; }
+
+        document.getElementById('gatekeeperOverlay').style.display = 'none';
+        document.getElementById('mainAppContainer').style.display = 'flex';
+        isAuthenticatedUser = true;
+
+        document.getElementById('headerUserText').innerText = email.split('@')[0];
+        document.getElementById('headerUserText').style.display = 'block';
+        document.getElementById('dropdownStatusText').innerText = email;
+        document.getElementById('dropdownQuotaRow').style.display = 'block';
+        document.getElementById('dropdownQuotaText').innerText = "0 / 1000";
+
+        document.getElementById('manualSyncBlock').style.display = 'flex';
+        document.getElementById('btnSyncManual').style.display = 'block';
+        document.getElementById('registeredConsentBlock').style.display = 'flex';
+        
+        toggleUploadButton();
+        toggleManualSyncButton();
+
+        // 10 Blank rows, no fake data.
+        globalData = [];
+        for(let i=1; i<=10; i++) globalData.push(createEmptyRow(i));
+        currentPage = 1;
+        renderTable();
+        updateAllDashboards();
     }
 
     function enterAsGuest() {
@@ -148122,38 +148225,6 @@
         document.getElementById('btnProcessCsv').style.cursor = 'pointer';
     }
 
-    function submitAuth() {
-        const email = document.getElementById('gkEmail').value.trim();
-        if (!email) { alert("Please enter your email."); return; }
-        if (gkAuthMode === 'register' && !document.getElementById('gkRegConsentCheck').checked) return;
-
-        document.getElementById('gatekeeperOverlay').style.display = 'none';
-        document.getElementById('mainAppContainer').style.display = 'flex';
-        isAuthenticatedUser = true;
-
-        document.getElementById('headerUserText').innerText = email.split('@')[0];
-        document.getElementById('headerUserText').style.display = 'block';
-        document.getElementById('dropdownStatusText').innerText = email;
-        document.getElementById('dropdownQuotaRow').style.display = 'block';
-        document.getElementById('dropdownQuotaText').innerText = "0 / 1000";
-
-        document.getElementById('manualSyncBlock').style.display = 'flex';
-        document.getElementById('btnSyncManual').style.display = 'block';
-        document.getElementById('registeredConsentBlock').style.display = 'flex';
-        
-        toggleUploadButton();
-        toggleManualSyncButton();
-
-        // Start user with exactly 10 clean slate empty rows. No fake data.
-        if(gkAuthMode === 'login') {
-            globalData = [];
-            for(let i=1; i<=10; i++) globalData.push(createEmptyRow(i));
-            currentPage = 1;
-            renderTable();
-            updateAllDashboards();
-        }
-    }
-
     function logoutUser() {
         isAuthenticatedUser = false;
         globalData = [];
@@ -148164,13 +148235,28 @@
         document.getElementById('mainAppContainer').style.display = 'none';
         document.getElementById('gatekeeperOverlay').style.display = 'flex';
         
-        document.getElementById('gkEmail').value = "";
-        document.getElementById('gkPassword').value = "";
-        document.getElementById('gkGuestConsent').checked = false;
-        document.getElementById('gkRegConsentCheck').checked = false;
+        document.getElementById('gkLoginEmail').value = "";
+        document.getElementById('gkLoginPass').value = "";
+        document.getElementById('gkLoginConsent').checked = false;
+        document.getElementById('gkRegConsent').checked = false;
+        document.getElementById('gkGuestConsentCheck').checked = false;
         document.getElementById("profileDropdown").classList.remove("show");
-        validateGuestGate();
-        setGkTab('login');
+        switchGkView('login');
+    }
+
+    function toggleProfileMenu() {
+        document.getElementById("profileDropdown").classList.toggle("show");
+    }
+
+    window.onclick = function(event) {
+        if (!event.target.closest('#userProfileBtn')) {
+            var dropdowns = document.getElementsByClassName("profile-dropdown-content");
+            for (var i = 0; i < dropdowns.length; i++) {
+                if (dropdowns[i].classList.contains('show')) {
+                    dropdowns[i].classList.remove('show');
+                }
+            }
+        }
     }
 
     function toggleUploadButton() {
@@ -148191,7 +148277,7 @@
         syncBtn.style.cursor = isChecked ? 'pointer' : 'not-allowed';
     }
 
-    function syncManualData() {
+    function syncAppManualData() {
         let unsavedCount = globalData.filter(r => !r.synced && r.fac && r.child && r.wt && r.ht).length;
         if (unsavedCount === 0) { alert("No complete, unsaved manual entries to sync."); return; }
         
@@ -148732,13 +148818,13 @@
     function generatePopulationStats() {
         let excludeFlags = document.getElementById('toggleExcl').checked;
         let wazData = getStatsArr('rawWaz', excludeFlags); let wM = calcMetrics(wazData.all), wB = calcMetrics(wazData.boys), wG = calcMetrics(wazData.girls); wazChartInst = drawBellChart('wazChart', wazChartInst, wM); let uAll = wazData.all.filter(v => v < -2).length, uB = wazData.boys.filter(v => v < -2).length, uG = wazData.girls.filter(v => v < -2).length; let suAll = wazData.all.filter(v => v < -3).length, suB = wazData.boys.filter(v => v < -3).length, suG = wazData.girls.filter(v => v < -3).length; let muAll = uAll - suAll, muB = uB - suB, muG = uG - suG;
-        document.getElementById('wazStatsText').innerHTML = `Prevalence of underweight (<-2 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', uAll, wM.n, calcPrev(uAll, wM.n)) + formatLineHTML('Boys', uB, wB.n, calcPrev(uB, wB.n)) + formatLineHTML('Girls', uG, wG.n, calcPrev(uG, wG.n)) + `</table><br>Prevalence of moderate underweight (<-2 and >=-3 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', muAll, wM.n, calcPrev(muAll, wM.n)) + formatLineHTML('Boys', muB, wB.n, calcPrev(muB, wB.n)) + formatLineHTML('Girls', muG, wG.n, calcPrev(muG, wG.n)) + `</table><br>Prevalence of severe underweight (<-3 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', suAll, wM.n, calcPrev(suAll, wM.n)) + formatLineHTML('Boys', suB, wB.n, calcPrev(suB, wB.n)) + formatLineHTML('Girls', suG, wG.n, calcPrev(suG, wG.n)) + `</table><br><div class="stats-footer-text">mean±SD of WAZ (n=${wM.n}): ${wM.mean.toFixed(2)} ± ${wM.sd.toFixed(2)}<br>Out of range: ${wazData.flags}</div>`;
+        document.getElementById('wazStatsText').innerHTML = `Prevalence of underweight (<-2 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', uAll, wM.n, calcPrev(uAll, wM.n)) + formatLineHTML('Boys', uB, wB.n, calcPrev(uB, wB.n)) + formatLineHTML('Girls', uG, wG.n, calcPrev(uG, wG.n)) + `</table><br>Prevalence of moderate underweight (<-2 and >=-3 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', muAll, wM.n, calcPrev(muAll, wM.n)) + formatLineHTML('Boys', muB, wB.n, calcPrev(muB, wB.n)) + formatLineHTML('Girls', muG, wG.n, calcPrev(muG, wG.n)) + `</table><br>Prevalence of severe underweight (<-3 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', suAll, wM.n, calcPrev(suAll, wM.n)) + formatLineHTML('Boys', suB, wB.n, calcPrev(suB, wB.n)) + formatLineHTML('Girls', suG, wG.n, calcPrev(suG, wG.n)) + `</table><br><div class="stats-footer-text">mean±SD of WAZ: ${wM.mean.toFixed(2)} ± ${wM.sd.toFixed(2)}<br>Out of range: ${wazData.flags}</div>`;
 
         let hazData = getStatsArr('rawHaz', excludeFlags); let hM = calcMetrics(hazData.all), hB = calcMetrics(hazData.boys), hG = calcMetrics(hazData.girls); hazChartInst = drawBellChart('hazChart', hazChartInst, hM); let sAll = hazData.all.filter(v => v < -2).length, sB = hazData.boys.filter(v => v < -2).length, sG = hazData.girls.filter(v => v < -2).length; let ssAll = hazData.all.filter(v => v < -3).length, ssB = hazData.boys.filter(v => v < -3).length, ssG = hazData.girls.filter(v => v < -3).length; let msAll = sAll - ssAll, msB = sB - ssB, msG = sG - ssG;
-        document.getElementById('hazStatsText').innerHTML = `Prevalence of stunting (<-2 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', sAll, hM.n, calcPrev(sAll, hM.n)) + formatLineHTML('Boys', sB, hB.n, calcPrev(sB, hB.n)) + formatLineHTML('Girls', sG, hG.n, calcPrev(sG, hG.n)) + `</table><br>Prevalence of moderate stunting (<-2 and >=-3 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', msAll, hM.n, calcPrev(msAll, hM.n)) + formatLineHTML('Boys', msB, hB.n, calcPrev(msB, hB.n)) + formatLineHTML('Girls', msG, hG.n, calcPrev(msG, hG.n)) + `</table><br>Prevalence of severe stunting (<-3 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', ssAll, hM.n, calcPrev(ssAll, hM.n)) + formatLineHTML('Boys', ssB, hB.n, calcPrev(ssB, hB.n)) + formatLineHTML('Girls', ssG, hG.n, calcPrev(ssG, hG.n)) + `</table><br><div class="stats-footer-text">mean±SD of HAZ (n=${hM.n}): ${hM.mean.toFixed(2)} ± ${hM.sd.toFixed(2)}<br>Out of range: ${hazData.flags}</div>`;
+        document.getElementById('hazStatsText').innerHTML = `Prevalence of stunting (<-2 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', sAll, hM.n, calcPrev(sAll, hM.n)) + formatLineHTML('Boys', sB, hB.n, calcPrev(sB, hB.n)) + formatLineHTML('Girls', sG, hG.n, calcPrev(sG, hG.n)) + `</table><br>Prevalence of moderate stunting (<-2 and >=-3 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', msAll, hM.n, calcPrev(msAll, hM.n)) + formatLineHTML('Boys', msB, hB.n, calcPrev(msB, hB.n)) + formatLineHTML('Girls', msG, hG.n, calcPrev(msG, hG.n)) + `</table><br>Prevalence of severe stunting (<-3 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', ssAll, hM.n, calcPrev(ssAll, hM.n)) + formatLineHTML('Boys', ssB, hB.n, calcPrev(ssB, hB.n)) + formatLineHTML('Girls', ssG, hG.n, calcPrev(ssG, hG.n)) + `</table><br><div class="stats-footer-text">mean±SD of HAZ: ${hM.mean.toFixed(2)} ± ${hM.sd.toFixed(2)}<br>Out of range: ${hazData.flags}</div>`;
 
         let whzData = getStatsArr('rawWhz', excludeFlags); let whM = calcMetrics(whzData.all), whB = calcMetrics(whzData.boys), whG = calcMetrics(whzData.girls); whzChartInst = drawBellChart('whzChart', whzChartInst, whM); let waAll = whzData.all.filter(v => v < -2).length, waB = whzData.boys.filter(v => v < -2).length, waG = whzData.girls.filter(v => v < -2).length; let swAll = whzData.all.filter(v => v < -3).length, swB = whzData.boys.filter(v => v < -3).length, swG = whzData.girls.filter(v => v < -3).length; let mwAll = waAll - swAll, mwB = waB - swB, mwG = waG - swG;
-        document.getElementById('whzStatsText').innerHTML = `Prevalence of acute malnutrition (<-2 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', waAll, whM.n, calcPrev(waAll, whM.n)) + formatLineHTML('Boys', waB, whB.n, calcPrev(waB, whB.n)) + formatLineHTML('Girls', waG, whG.n, calcPrev(waG, whG.n)) + `</table><br>Prevalence of moderate acute malnutrition (<-2 and >=-3 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', mwAll, whM.n, calcPrev(mwAll, whM.n)) + formatLineHTML('Boys', mwB, whB.n, calcPrev(mwB, whB.n)) + formatLineHTML('Girls', mwG, whG.n, calcPrev(mwG, whG.n)) + `</table><br>Prevalence of severe acute malnutrition (<-3 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', swAll, whM.n, calcPrev(swAll, whM.n)) + formatLineHTML('Boys', swB, whB.n, calcPrev(swB, whB.n)) + formatLineHTML('Girls', swG, whG.n, calcPrev(swG, whG.n)) + `</table><br><div class="stats-footer-text">mean±SD of WHZ (n=${whM.n}): ${whM.mean.toFixed(2)} ± ${whM.sd.toFixed(2)}<br>Out of range: ${whzData.flags}</div>`;
+        document.getElementById('whzStatsText').innerHTML = `Prevalence of acute malnutrition (<-2 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', waAll, whM.n, calcPrev(waAll, whM.n)) + formatLineHTML('Boys', waB, whB.n, calcPrev(waB, whB.n)) + formatLineHTML('Girls', waG, whG.n, calcPrev(waG, whG.n)) + `</table><br>Prevalence of moderate acute malnutrition (<-2 and >=-3 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', mwAll, whM.n, calcPrev(mwAll, whM.n)) + formatLineHTML('Boys', mwB, whB.n, calcPrev(mwB, whB.n)) + formatLineHTML('Girls', mwG, whG.n, calcPrev(mwG, whG.n)) + `</table><br>Prevalence of severe acute malnutrition (<-3 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', swAll, whM.n, calcPrev(swAll, whM.n)) + formatLineHTML('Boys', swB, whB.n, calcPrev(swB, whB.n)) + formatLineHTML('Girls', swG, whG.n, calcPrev(swG, whG.n)) + `</table><br><div class="stats-footer-text">mean±SD of WHZ: ${whM.mean.toFixed(2)} ± ${whM.sd.toFixed(2)}<br>Out of range: ${whzData.flags}</div>`;
 
         let rawScatterData = [];
         globalData.forEach(r => {
