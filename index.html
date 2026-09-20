@@ -17,21 +17,24 @@
            ========================================== */
         #gatekeeperOverlay { position: fixed; inset: 0; background: #ffffff; z-index: 9999; display: flex; flex-direction: row; overflow: hidden;}
         
-        /* Left Side: Illustration Panel */
+        /* Left Side: Image Panel */
         .gk-left {
             flex: 1.2;
-            background-color: #e0f2f1; /* Soft fallback color */
-            /* 
-               IMPORTANT: Put your generated doctor image URL below! 
-               Edit your image first to reduce the hand/phone size, then link it here.
-            */
-            background-image: url('YOUR_DOCTOR_IMAGE.jpg'); 
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            background-color: #eaf1fb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             border-right: 1px solid #ccc;
             box-shadow: 2px 0 15px rgba(0,0,0,0.1);
             z-index: 2;
+        }
+        
+        /* CSS Filter turns black line-art into the matching #1976d2 blue theme */
+        .gk-left-image {
+            width: 70%;
+            max-width: 500px;
+            height: auto;
+            filter: invert(36%) sepia(91%) saturate(1611%) hue-rotate(193deg) brightness(94%) contrast(98%);
         }
 
         /* Right Side: Interactive Portal */
@@ -39,24 +42,20 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
             padding: 40px;
             background: #fdfdfd;
-            position: relative;
+            overflow-y: auto;
         }
 
         .gk-right-content {
             width: 100%;
             max-width: 380px;
+            margin: auto; /* Vertically and horizontally centers the content block */
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: stretch;
         }
 
-        /* Mother & Child SVG Icon */
-        .gk-logo-svg { width: 70px; height: 70px; color: #2c5282; margin-bottom: 10px; }
-        .gk-app-name { font-size: 18px; font-weight: bold; color: #333; margin-bottom: 25px; letter-spacing: 0.5px; }
         .gk-welcome { font-size: 26px; font-weight: 600; color: #1a202c; margin-bottom: 30px; text-align: center; }
 
         /* Input Fields with inner icons */
@@ -79,7 +78,7 @@
         .gk-link:hover { text-decoration: underline; }
 
         /* View Containers */
-        .gk-view { display: none; width: 100%; flex-direction: column; align-items: center; animation: fadeIn 0.3s ease;}
+        .gk-view { display: none; width: 100%; flex-direction: column; align-items: stretch; animation: fadeIn 0.3s ease;}
         .gk-view.active { display: flex; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -88,7 +87,7 @@
         .gk-dpdpa-label { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; font-size: 12px; font-weight: bold; color: #d32f2f; line-height: 1.4; text-align: justify; margin: 0;}
 
         /* Footer */
-        .gk-footer { position: absolute; bottom: 20px; text-align: center; font-size: 12px; color: #718096; width: 100%; }
+        .gk-footer { text-align: center; font-size: 12px; color: #718096; margin-top: 40px; width: 100%; }
 
         /* ==========================================
            MAIN APP UI (ORIGINAL RESTORED + UPGRADES)
@@ -165,8 +164,6 @@
         .stat-text-container { width: 45%; height: 100%; overflow: hidden; background: #ffffff; border: 1px solid #bdbdbd; border-radius: 5px; padding: 20px; box-shadow: inset 0 0 5px rgba(0,0,0,0.02); display: flex; flex-direction: column; justify-content: space-between;}
         .stats-grid-table { width: 100%; border-collapse: collapse; font-family: "Courier New", Courier, monospace; font-size: 12.5px; font-weight: 700; color: #000; line-height: 1.5; }
         .stats-grid-table td { padding: 4px 0; vertical-align: top; border-bottom: 1px dashed #eee; }
-        .stats-grid-table tr:last-child td { border-bottom: none; }
-        .stats-footer-text { font-family: "Courier New", Courier, monospace; font-size: 13.5px; font-weight: 700; color: #000; margin-top: 15px; }
         .scatter-container { width: 100%; background: white; border: 1px solid #ccc; border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); box-sizing: border-box;}
         .scatter-wrapper { position: relative; width: 100%; max-width: 800px; height: 800px; margin: 15px auto; background-color: #fdfdfd; border: 1px solid #e0e0e0; overflow: hidden; box-sizing: border-box;}
         .exclusion-footer { background: #ede7f6; border-left: 5px solid #673ab7; padding: 15px; margin-top: 20px; font-size: 13px; color: #333; line-height: 1.6; border-radius: 0 4px 4px 0;}
@@ -225,23 +222,16 @@
          ========================================================= -->
     <div id="gatekeeperOverlay">
         
-        <!-- Left Side: Doctor Image Placeholder -->
-        <div class="gk-left"></div>
+        <!-- Left Side: Custom Image Holder -->
+        <div class="gk-left">
+            <img src="image_eecf52.png" alt="Mother and Child" class="gk-left-image">
+        </div>
 
         <!-- Right Side: Interactive Portal -->
         <div class="gk-right">
             <div class="gk-right-content">
                 
-                <!-- SVG Mother & Child Logo -->
-                <svg class="gk-logo-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="9" cy="7" r="4"></circle>
-                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                </svg>
-
-                <div class="gk-app-name">DBI Calculator</div>
-                <div class="gk-welcome">Welcome to DBI Portal</div>
+                <div class="gk-welcome">Welcome to DBI Calculator</div>
 
                 <!-- VIEW 1: LOGIN -->
                 <div id="gkViewLogin" class="gk-view active">
@@ -343,10 +333,9 @@
                     </div>
                 </div>
 
-            </div>
-            
-            <div class="gk-footer">
-                Copyright DBI Calculator, Phadke, Gautam, Nair and Rade, 2026.
+                <div class="gk-footer">
+                    Copyright DBI Calculator, Phadke, Gautam, Nair and Rade, 2026.
+                </div>
             </div>
         </div>
     </div>
@@ -148818,13 +148807,13 @@
     function generatePopulationStats() {
         let excludeFlags = document.getElementById('toggleExcl').checked;
         let wazData = getStatsArr('rawWaz', excludeFlags); let wM = calcMetrics(wazData.all), wB = calcMetrics(wazData.boys), wG = calcMetrics(wazData.girls); wazChartInst = drawBellChart('wazChart', wazChartInst, wM); let uAll = wazData.all.filter(v => v < -2).length, uB = wazData.boys.filter(v => v < -2).length, uG = wazData.girls.filter(v => v < -2).length; let suAll = wazData.all.filter(v => v < -3).length, suB = wazData.boys.filter(v => v < -3).length, suG = wazData.girls.filter(v => v < -3).length; let muAll = uAll - suAll, muB = uB - suB, muG = uG - suG;
-        document.getElementById('wazStatsText').innerHTML = `Prevalence of underweight (<-2 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', uAll, wM.n, calcPrev(uAll, wM.n)) + formatLineHTML('Boys', uB, wB.n, calcPrev(uB, wB.n)) + formatLineHTML('Girls', uG, wG.n, calcPrev(uG, wG.n)) + `</table><br>Prevalence of moderate underweight (<-2 and >=-3 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', muAll, wM.n, calcPrev(muAll, wM.n)) + formatLineHTML('Boys', muB, wB.n, calcPrev(muB, wB.n)) + formatLineHTML('Girls', muG, wG.n, calcPrev(muG, wG.n)) + `</table><br>Prevalence of severe underweight (<-3 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', suAll, wM.n, calcPrev(suAll, wM.n)) + formatLineHTML('Boys', suB, wB.n, calcPrev(suB, wB.n)) + formatLineHTML('Girls', suG, wG.n, calcPrev(suG, wG.n)) + `</table><br><div class="stats-footer-text">mean±SD of WAZ: ${wM.mean.toFixed(2)} ± ${wM.sd.toFixed(2)}<br>Out of range: ${wazData.flags}</div>`;
+        document.getElementById('wazStatsText').innerHTML = `Prevalence of underweight (<-2 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', uAll, wM.n, calcPrev(uAll, wM.n)) + formatLineHTML('Boys', uB, wB.n, calcPrev(uB, wB.n)) + formatLineHTML('Girls', uG, wG.n, calcPrev(uG, wG.n)) + `</table><br>Prevalence of moderate underweight (<-2 and >=-3 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', muAll, wM.n, calcPrev(muAll, wM.n)) + formatLineHTML('Boys', muB, wB.n, calcPrev(muB, wB.n)) + formatLineHTML('Girls', muG, wG.n, calcPrev(muG, wG.n)) + `</table><br>Prevalence of severe underweight (<-3 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', suAll, wM.n, calcPrev(suAll, wM.n)) + formatLineHTML('Boys', suB, wB.n, calcPrev(suB, wB.n)) + formatLineHTML('Girls', suG, wG.n, calcPrev(suG, wG.n)) + `</table><br><div class="stats-footer-text">mean±SD of WAZ (n=${wM.n}): ${wM.mean.toFixed(2)} ± ${wM.sd.toFixed(2)}<br>Out of range: ${wazData.flags}</div>`;
 
         let hazData = getStatsArr('rawHaz', excludeFlags); let hM = calcMetrics(hazData.all), hB = calcMetrics(hazData.boys), hG = calcMetrics(hazData.girls); hazChartInst = drawBellChart('hazChart', hazChartInst, hM); let sAll = hazData.all.filter(v => v < -2).length, sB = hazData.boys.filter(v => v < -2).length, sG = hazData.girls.filter(v => v < -2).length; let ssAll = hazData.all.filter(v => v < -3).length, ssB = hazData.boys.filter(v => v < -3).length, ssG = hazData.girls.filter(v => v < -3).length; let msAll = sAll - ssAll, msB = sB - ssB, msG = sG - ssG;
-        document.getElementById('hazStatsText').innerHTML = `Prevalence of stunting (<-2 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', sAll, hM.n, calcPrev(sAll, hM.n)) + formatLineHTML('Boys', sB, hB.n, calcPrev(sB, hB.n)) + formatLineHTML('Girls', sG, hG.n, calcPrev(sG, hG.n)) + `</table><br>Prevalence of moderate stunting (<-2 and >=-3 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', msAll, hM.n, calcPrev(msAll, hM.n)) + formatLineHTML('Boys', msB, hB.n, calcPrev(msB, hB.n)) + formatLineHTML('Girls', msG, hG.n, calcPrev(msG, hG.n)) + `</table><br>Prevalence of severe stunting (<-3 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', ssAll, hM.n, calcPrev(ssAll, hM.n)) + formatLineHTML('Boys', ssB, hB.n, calcPrev(ssB, hB.n)) + formatLineHTML('Girls', ssG, hG.n, calcPrev(ssG, hG.n)) + `</table><br><div class="stats-footer-text">mean±SD of HAZ: ${hM.mean.toFixed(2)} ± ${hM.sd.toFixed(2)}<br>Out of range: ${hazData.flags}</div>`;
+        document.getElementById('hazStatsText').innerHTML = `Prevalence of stunting (<-2 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', sAll, hM.n, calcPrev(sAll, hM.n)) + formatLineHTML('Boys', sB, hB.n, calcPrev(sB, hB.n)) + formatLineHTML('Girls', sG, hG.n, calcPrev(sG, hG.n)) + `</table><br>Prevalence of moderate stunting (<-2 and >=-3 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', msAll, hM.n, calcPrev(msAll, hM.n)) + formatLineHTML('Boys', msB, hB.n, calcPrev(msB, hB.n)) + formatLineHTML('Girls', msG, hG.n, calcPrev(msG, hG.n)) + `</table><br>Prevalence of severe stunting (<-3 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', ssAll, hM.n, calcPrev(ssAll, hM.n)) + formatLineHTML('Boys', ssB, hB.n, calcPrev(ssB, hB.n)) + formatLineHTML('Girls', ssG, hG.n, calcPrev(ssG, hG.n)) + `</table><br><div class="stats-footer-text">mean±SD of HAZ (n=${hM.n}): ${hM.mean.toFixed(2)} ± ${hM.sd.toFixed(2)}<br>Out of range: ${hazData.flags}</div>`;
 
         let whzData = getStatsArr('rawWhz', excludeFlags); let whM = calcMetrics(whzData.all), whB = calcMetrics(whzData.boys), whG = calcMetrics(whzData.girls); whzChartInst = drawBellChart('whzChart', whzChartInst, whM); let waAll = whzData.all.filter(v => v < -2).length, waB = whzData.boys.filter(v => v < -2).length, waG = whzData.girls.filter(v => v < -2).length; let swAll = whzData.all.filter(v => v < -3).length, swB = whzData.boys.filter(v => v < -3).length, swG = whzData.girls.filter(v => v < -3).length; let mwAll = waAll - swAll, mwB = waB - swB, mwG = waG - swG;
-        document.getElementById('whzStatsText').innerHTML = `Prevalence of acute malnutrition (<-2 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', waAll, whM.n, calcPrev(waAll, whM.n)) + formatLineHTML('Boys', waB, whB.n, calcPrev(waB, whB.n)) + formatLineHTML('Girls', waG, whG.n, calcPrev(waG, whG.n)) + `</table><br>Prevalence of moderate acute malnutrition (<-2 and >=-3 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', mwAll, whM.n, calcPrev(mwAll, whM.n)) + formatLineHTML('Boys', mwB, whB.n, calcPrev(mwB, whB.n)) + formatLineHTML('Girls', mwG, whG.n, calcPrev(mwG, whG.n)) + `</table><br>Prevalence of severe acute malnutrition (<-3 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', swAll, whM.n, calcPrev(swAll, whM.n)) + formatLineHTML('Boys', swB, whB.n, calcPrev(swB, whB.n)) + formatLineHTML('Girls', swG, whG.n, calcPrev(swG, whG.n)) + `</table><br><div class="stats-footer-text">mean±SD of WHZ: ${whM.mean.toFixed(2)} ± ${whM.sd.toFixed(2)}<br>Out of range: ${whzData.flags}</div>`;
+        document.getElementById('whzStatsText').innerHTML = `Prevalence of acute malnutrition (<-2 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', waAll, whM.n, calcPrev(waAll, whM.n)) + formatLineHTML('Boys', waB, whB.n, calcPrev(waB, whB.n)) + formatLineHTML('Girls', waG, whG.n, calcPrev(waG, whG.n)) + `</table><br>Prevalence of moderate acute malnutrition (<-2 and >=-3 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', mwAll, whM.n, calcPrev(mwAll, whM.n)) + formatLineHTML('Boys', mwB, whB.n, calcPrev(mwB, whB.n)) + formatLineHTML('Girls', mwG, whG.n, calcPrev(mwG, whG.n)) + `</table><br>Prevalence of severe acute malnutrition (<-3 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', swAll, whM.n, calcPrev(swAll, whM.n)) + formatLineHTML('Boys', swB, whB.n, calcPrev(swB, whB.n)) + formatLineHTML('Girls', swG, whG.n, calcPrev(swG, whG.n)) + `</table><br><div class="stats-footer-text">mean±SD of WHZ (n=${whM.n}): ${whM.mean.toFixed(2)} ± ${whM.sd.toFixed(2)}<br>Out of range: ${whzData.flags}</div>`;
 
         let rawScatterData = [];
         globalData.forEach(r => {
