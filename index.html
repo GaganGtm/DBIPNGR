@@ -16,37 +16,51 @@
            GATEKEEPER OVERLAY CSS (PROFESSIONAL UX)
            ========================================== */
         #gatekeeperOverlay { position: fixed; inset: 0; background: #f4f7fe; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow-y: auto; padding: 20px;}
-        .gk-title { font-size: 28px; font-weight: 900; color: #1976d2; margin-bottom: 5px; text-align: center; text-transform: uppercase; letter-spacing: 1px;}
-        .gk-subtitle { font-size: 16px; font-weight: bold; color: #555; margin-bottom: 40px; text-align: center;}
+        .gk-title-box { text-align: center; margin-bottom: 40px; }
+        .gk-main-title { color: #1976d2; font-size: 34px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; margin: 0 0 10px 0; }
+        .gk-sub-title { color: #555; font-size: 16px; font-weight: bold; margin: 0; }
         
-        .gk-container { display: flex; gap: 30px; max-width: 900px; width: 100%; align-items: stretch; justify-content: center; flex-wrap: wrap;}
-        .gk-card { background: white; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); padding: 30px; flex: 1; min-width: 320px; display: flex; flex-direction: column; border: 2px solid #4285f4; border-top: 6px solid #4285f4;}
-        .gk-card-title { font-size: 20px; font-weight: 800; color: #333; margin-bottom: 20px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px;}
-        .gk-icon-row { display: flex; gap: 15px; color: #1976d2;}
+        .gk-cards-wrapper { display: flex; gap: 40px; width: 100%; max-width: 1000px; justify-content: center; align-items: stretch; min-height: 480px;}
+        .gk-card { flex: 1; background: white; border: 3px solid #4285f4; border-radius: 8px; padding: 40px; display: flex; flex-direction: column; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+        .gk-card-header { text-align: center; margin-bottom: 30px; }
+        .gk-icons { display: flex; justify-content: center; gap: 15px; margin-bottom: 15px; }
+        .gk-card-title { font-size: 22px; font-weight: 900; margin: 0;}
+        .title-guest { color: #2e7d32; }
+        .title-reg { color: #1976d2; }
         
-        .gk-btn { background-color: #1976d2; color: white; border: none; padding: 12px; cursor: pointer; font-weight: bold; border-radius: 4px; font-size: 15px; width: 100%; transition: 0.2s;}
+        .gk-toggle-group { display: flex; gap: 10px; margin-bottom: 20px; }
+        .gk-toggle-btn { flex: 1; padding: 12px; font-weight: bold; cursor: pointer; border-radius: 4px; font-size: 14px; text-align: center; transition: 0.2s; border: 2px solid #1976d2; }
+        .gk-toggle-active { background-color: #1976d2; color: white; }
+        .gk-toggle-inactive { background-color: white; color: #1976d2; }
+        
+        .gk-input { width: 100%; padding: 12px; font-size: 14px; margin-bottom: 15px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; outline: none;}
+        .gk-input:focus { border-color: #1976d2; }
+        
+        .gk-btn { background-color: #1976d2; color: white; border: none; padding: 14px; cursor: pointer; font-weight: bold; border-radius: 4px; font-size: 16px; width: 100%; transition: 0.2s; text-transform: uppercase; margin-top: auto;}
         .gk-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-        .gk-btn:hover:not(:disabled) { background-color: #1565c0; box-shadow: 0 2px 4px rgba(0,0,0,0.2);}
-        .gk-btn-outline { background-color: white; color: #1976d2; border: 2px solid #1976d2; margin-bottom: 15px;}
-        .gk-desc { font-size: 12px; color: #555; text-align: center; margin-top: 20px; font-style: italic; padding-top: 15px; border-top: 1px solid #eee;}
+        .gk-btn:hover:not(:disabled) { background-color: #1565c0; }
+        .gk-btn-green { background-color: #2e7d32; }
+        .gk-btn-green:hover:not(:disabled) { background-color: #1b5e20; }
+        
+        .gk-dpdpa-note { font-size: 11px; color: #555; text-align: justify; margin-top: 20px; font-style: italic; line-height: 1.4; border-top: 1px solid #eee; padding-top: 15px;}
+        .gk-restricted-box { background: #fce4ec; border: 1px solid #d32f2f; border-radius: 4px; padding: 40px 20px; text-align: center; margin-top: 20px;}
 
         /* ==========================================
-           MAIN APP UI
+           MAIN APP UI (ORIGINAL RESTORED)
            ========================================== */
         .sticky-top { flex: 0 0 auto; padding: 10px 10px 0 10px; background-color: #f8f9fa; z-index: 1000; }
         
-        /* RESTORED PERFECT HEADER */
+        /* EXACT ORIGINAL HEADER WITH ABSOLUTE PROFILE POSITIONING */
         .header-title { position: relative; background-color: #4285f4; color: white; padding: 12px; text-align: center; font-weight: bold; font-size: 22px; margin-bottom: 0; border-radius: 4px; transition: background-color 0.3s;}
         
-        /* Dropdown Profile Menu (Absolute Position) */
+        /* Dropdown Profile Menu (Floats right, doesn't affect centering) */
         .profile-container { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); display: flex; align-items: center; gap: 8px; cursor: pointer; }
-        .profile-dropdown-content { display: none; position: absolute; right: 0; top: 40px; background-color: #ffffff; min-width: 220px; box-shadow: 0px 8px 16px rgba(0,0,0,0.2); z-index: 2000; border-radius: 6px; overflow: hidden; border: 1px solid #ccc;}
+        .profile-dropdown-content { display: none; position: absolute; right: 0; top: 40px; background-color: #ffffff; min-width: 220px; box-shadow: 0px 8px 16px rgba(0,0,0,0.2); z-index: 2000; border-radius: 6px; overflow: hidden; border: 1px solid #ccc; font-family: Arial, sans-serif;}
         .profile-dropdown-content.show { display: block; }
         .profile-info-row { padding: 12px; border-bottom: 1px solid #eee; color: #333; font-size: 12px; text-align: left; font-weight: normal; line-height: 1.4;}
         .profile-logout-btn { background-color: #d32f2f; color: white; text-align: center; padding: 10px; cursor: pointer; font-weight: bold; font-size: 12px; transition: 0.2s; border: none; width: 100%;}
         .profile-logout-btn:hover { background-color: #b71c1c; }
 
-        /* Dynamic Tabs */
         .tab-container { margin-bottom: 0; margin-top: 8px; display: flex; width: 100%; }
         .tab-btn { flex: 1; background-color: #e0e0e0; border: 1px solid #ccc; border-bottom: none; padding: 10px; cursor: pointer; font-size: 15px; font-weight: bold; border-radius: 8px 8px 0 0; text-align: center; margin-right: 4px; transition: all 0.2s ease;}
         .tab-btn:last-child { margin-right: 0; }
@@ -74,7 +88,6 @@
         .col-sn { width: 3.5%; } .col-fac { width: 9%; } .col-child { width: 9%; } .col-date { width: 11.5%; } .col-age { width: 3%; } .col-gen { width: 4%; } .col-wt { width: 4.5%; } .col-ht { width: 4.5%; } .col-z { width: 3.5%; }  .col-stat { width: 6.5%; } .col-dbi { width: 11%; }
         .dbi-cat { font-weight: normal !important; } .status-cell { font-weight: bold; }
 
-        /* Unified Pagination Controls */
         .pagination-container { flex: 0 0 auto; display: flex; flex-direction: row; justify-content: space-between; align-items: center; background: #e3f2fd; padding: 10px 15px; border: 1px solid #90caf9; border-radius: 4px; margin-bottom: 10px; }
         #pageInfoText { font-weight: bold; font-size: 13px; color: #1976d2; flex: 1; text-align: left; }
         #pageNumbers { flex: 2; display: flex; gap: 5px; flex-wrap: wrap; justify-content: center; align-items: center;}
@@ -82,11 +95,13 @@
         .page-num-btn:hover:not(:disabled) { background: #bbdefb; }
         .page-num-btn.active { background: #1976d2; color: white; border-color: #1976d2; cursor: default; }
         .page-num-btn:disabled { color: #aaa; border-color: #ddd; cursor: not-allowed; }
-        .add-row-btn { flex: 1; text-align: right; }
-
+        
         .bulk-import-container { flex: 0 0 auto; background: #e8f0fe; padding: 10px; margin-top: 5px; border: 1px solid #4285f4; border-radius: 5px; font-size: 13px; display: flex; flex-direction: column; gap: 10px;}
 
-        /* Summary Dashboard Layout */
+        /* Styled DPDPA Notice Boxes (Blue Box / Red Text) */
+        .dpdpa-inline-box { display: none; background: #eaf1fb; border: 1px solid #1976d2; border-radius: 4px; padding: 6px 10px; align-items: center; margin: 0; flex-grow: 1;}
+        .dpdpa-inline-text { color: #d32f2f; font-weight: bold; font-size: 12px; margin: 0; margin-left: 6px; cursor: pointer; white-space: nowrap;}
+
         .summary-top-row { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; align-items: stretch; }
         .summary-column { flex: 1; min-width: 400px; display: flex; flex-direction: column; }
         .chart-container { flex: 1; min-width: 400px; background: white; padding: 15px; border-radius: 8px; border: 1px solid #ccc; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; flex-direction: column; align-items: stretch; }
@@ -129,7 +144,7 @@
         @media print {
             @page { size: A4 portrait; margin: 12mm; }
             body, html { height: auto !important; overflow: visible !important; background: white !important; max-width: 100%;}
-            #gatekeeperOverlay, #mainAppContainer { display: none !important; }
+            #gatekeeperOverlay, .sticky-top, .tab-container, .tab-wrapper { display: none !important; }
             #formalPrintReport { display: block !important; padding: 0; }
             .print-page { display: flex; flex-direction: column; justify-content: flex-start; min-height: 250mm; page-break-after: always; box-sizing: border-box; overflow: hidden; width: 100%; max-width: 175mm; margin: 0 auto; }
             .print-page.no-break { page-break-after: auto; min-height: auto; }
@@ -168,67 +183,70 @@
          THE GATEKEEPER OVERLAY (LANDING PAGE)
          ========================================================= -->
     <div id="gatekeeperOverlay">
-        <div class="gk-title">Double Burden Index (DBI) Calculator</div>
-        <div class="gk-subtitle">by Phadke, Gautam, Nair and Rade, 2026</div>
+        <div class="gk-title-box">
+            <h1 class="gk-main-title">Double Burden Index (DBI) Calculator</h1>
+            <h2 class="gk-sub-title">by Phadke, Gautam, Nair and Rade, 2026</h2>
+        </div>
         
-        <div class="gk-container">
+        <div class="gk-cards-wrapper">
             <!-- USER MODE: GUEST ACCESS -->
             <div class="gk-card">
-                <div class="gk-card-title" style="color: #2e7d32;">
-                    <div class="gk-icon-row">
-                        <!-- Clean Shield/File SVG -->
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#2e7d32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#2e7d32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                <div class="gk-card-header">
+                    <div class="gk-icons">
+                        <svg width="45" height="45" viewBox="0 0 24 24" fill="none" stroke="#2e7d32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        <svg width="45" height="45" viewBox="0 0 24 24" fill="none" stroke="#2e7d32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                     </div>
-                    User Mode: Guest Access
+                    <div class="gk-card-title title-guest">User Mode: Guest Access</div>
                 </div>
                 
                 <div id="gkGuestActive" style="display: none; flex-direction: column; height: 100%;">
                     <div style="flex-grow: 1;"></div>
-                    <label style="display: flex; gap: 8px; align-items: flex-start; cursor: pointer; font-size: 13px; font-weight: bold; color: #1b5e20; background: #e8f5e9; padding: 12px; border-radius: 4px; margin-bottom: 20px; border: 1px solid #4caf50;">
-                        <input type="checkbox" id="gkGuestConsent" onchange="validateGuestGate()" style="margin-top: 2px;">
-                        <span>I acknowledge this is a zero-knowledge local session. I understand no data will be backed up or synced to the cloud.</span>
-                    </label>
-                    <button id="btnEnterGuest" class="gk-btn" style="background-color: #2e7d32;" onclick="enterAsGuest()" disabled>Enter as Guest</button>
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <label style="display: inline-flex; align-items: flex-start; gap: 8px; cursor: pointer; text-align: left;">
+                            <input type="checkbox" id="gkGuestConsent" onchange="validateGuestGate()" style="margin-top: 4px; transform: scale(1.2);">
+                            <span style="font-size: 13px; font-weight: bold; color: #d32f2f;">[DPDP Act Notice] I acknowledge this is a zero-knowledge local session. I understand no data will be backed up or synced to the cloud.</span>
+                        </label>
+                    </div>
+                    <button id="btnEnterGuest" class="gk-btn gk-btn-green" onclick="enterAsGuest()" disabled>Enter as Guest</button>
                     <div class="gk-desc">This mode is restricted to local browser calculations only. It does not utilize backend storage or quota limits.</div>
                 </div>
 
-                <div id="gkGuestLocked" style="display: flex; flex-direction: column; height: 100%; justify-content: center; align-items: center; text-align: center; background: #ffebee; border: 1px solid #d32f2f; border-radius: 4px; padding: 20px;">
-                    <div style="font-size: 32px; margin-bottom: 10px;">🛑</div>
-                    <div style="font-size: 16px; font-weight: bold; color: #b71c1c;">Guest Access Restricted</div>
-                    <div style="font-size: 13px; color: #b71c1c; margin-top: 10px; line-height: 1.4;">During this initial rollout phase, you must log in to an authorized registered account to process data.</div>
+                <div id="gkGuestLocked" style="display: flex; flex-direction: column; height: 100%; justify-content: center; align-items: center; text-align: center;">
+                    <div class="gk-restricted-box">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="#d32f2f" stroke="#d32f2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 10px;"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="15" y1="9" x2="9" y2="15" stroke="white"></line><line x1="9" y1="9" x2="15" y2="15" stroke="white"></line></svg>
+                        <div style="font-size: 18px; font-weight: bold; color: #b71c1c; margin-bottom: 10px;">Guest Access Restricted</div>
+                        <div style="font-size: 14px; color: #d32f2f; line-height: 1.4;">During this initial rollout phase, you must log in to an authorized registered account to process data.</div>
+                    </div>
                 </div>
             </div>
 
             <!-- USER MODE: REGISTERED USER -->
             <div class="gk-card">
-                <div class="gk-card-title" style="color: #1976d2;">
-                    <div class="gk-icon-row">
-                        <!-- Clean Hospital/Cloud SVG -->
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1976d2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1976d2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 16.2A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"></path><polyline points="16 16 12 20 8 16"></polyline><line x1="12" y1="12" x2="12" y2="20"></line></svg>
+                <div class="gk-card-header">
+                    <div class="gk-icons">
+                        <svg width="45" height="45" viewBox="0 0 24 24" fill="none" stroke="#1976d2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                        <svg width="45" height="45" viewBox="0 0 24 24" fill="none" stroke="#1976d2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 16.2A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"></path><polyline points="16 16 12 20 8 16"></polyline><line x1="12" y1="12" x2="12" y2="20"></line></svg>
                     </div>
-                    User Mode: Registered User
+                    <div class="gk-card-title title-reg">User Mode: Registered User</div>
                 </div>
                 
-                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
-                    <button id="tabGkLog" class="gk-btn gk-btn-outline" style="margin-bottom:0; background: #1976d2; color: white;" onclick="setGkTab('login')">Login</button>
-                    <button id="tabGkReg" class="gk-btn gk-btn-outline" style="margin-bottom:0;" onclick="setGkTab('register')">Register</button>
+                <div class="gk-toggle-group">
+                    <div id="tabGkLog" class="gk-toggle-btn gk-toggle-active" onclick="setGkTab('login')">Login</div>
+                    <div id="tabGkReg" class="gk-toggle-btn gk-toggle-inactive" onclick="setGkTab('register')">Register</div>
                 </div>
 
                 <div id="gkRegFields" style="display: none;">
-                    <input type="text" id="gkName" placeholder="Doctor / Practitioner Name" style="width: 100%; padding: 10px; font-size: 13px; margin-bottom: 10px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;">
-                    <input type="text" id="gkFacility" placeholder="Facility / Clinic Name" style="width: 100%; padding: 10px; font-size: 13px; margin-bottom: 10px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;">
+                    <input type="text" id="gkName" class="gk-input" placeholder="Doctor / Practitioner Name">
+                    <input type="text" id="gkFacility" class="gk-input" placeholder="Facility / Clinic Name">
                 </div>
 
-                <input type="email" id="gkEmail" placeholder="Email Address" style="width: 100%; padding: 10px; font-size: 13px; margin-bottom: 10px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;">
-                <input type="password" id="gkPassword" placeholder="Password" style="width: 100%; padding: 10px; font-size: 13px; margin-bottom: 15px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;">
+                <input type="email" id="gkEmail" class="gk-input" placeholder="Email Address">
+                <input type="password" id="gkPassword" class="gk-input" placeholder="Password">
 
-                <div id="gkDpdpaBlock" style="display: none; background: #eaf1fb; border: 1px solid #1976d2; border-radius: 4px; padding: 10px; margin-bottom: 15px;">
-                    <div style="font-size: 11px; font-weight: bold; color: #1976d2; margin-bottom: 4px;">DPDP ACT 2023 STATUTORY CONSENT:</div>
-                    <label style="display: flex; gap: 6px; align-items: flex-start; cursor: pointer; font-size: 11px; font-weight: bold; color: #d32f2f;">
-                        <input type="checkbox" id="gkRegConsentCheck" onchange="validateRegGate()" style="margin-top: 1px;">
-                        <span>I am an authorized Data Fiduciary. I consent to account processing and agree to uphold all statutory parental consent duties under Section 9 prior to syncing data.</span>
+                <div id="gkDpdpaBlock" style="display: none; margin-bottom: 20px;">
+                    <label style="display: flex; gap: 8px; align-items: flex-start; cursor: pointer; text-align: left;">
+                        <input type="checkbox" id="gkRegConsentCheck" onchange="validateRegGate()" style="margin-top: 4px; transform: scale(1.2);">
+                        <span style="font-size: 12px; font-weight: bold; color: #d32f2f;">[DPDP Act Notice] I am an authorized Data Fiduciary. I consent to account processing and agree to uphold all statutory parental consent duties under Section 9 prior to syncing data.</span>
                     </label>
                 </div>
 
@@ -244,26 +262,26 @@
          ========================================================= -->
     <div id="mainAppContainer">
         
-        <!-- ORIGINAL RESTORED PERFECT HEADER WITH ABSOLUTE PROFILE ICON -->
+        <!-- RESTORED PERFECT HEADER WITH ABSOLUTE PROFILE ICON -->
         <div class="sticky-top">
             <div class="header-title" id="mainHeaderTitle">
                 Double Burden Index (DBI) Calculator by Phadke, Gautam, Nair and Rade, 2026
                 
                 <!-- Floating Profile Icon -->
                 <div class="profile-container" id="userProfileBtn" onclick="toggleProfileMenu()">
-                    <span id="headerUserText" style="font-size: 13px; font-weight: normal; color: white; display: none;">Guest</span>
-                    <div style="background: white; color: #1976d2; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    <span id="headerUserText" style="font-size: 14px; font-weight: normal; color: white; display: none;">Guest</span>
+                    <div style="background: white; color: #1976d2; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,0.3);">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
                     </div>
                     
                     <!-- Dropdown Box -->
                     <div id="profileDropdown" class="profile-dropdown-content">
                         <div class="profile-info-row">
-                            <strong style="color:#1976d2;">Account Status:</strong><br>
+                            <strong style="color:#1976d2; font-size: 13px;">Account Status:</strong><br>
                             <span id="dropdownStatusText" style="color: #666;">Guest Mode</span>
                         </div>
                         <div class="profile-info-row" id="dropdownQuotaRow" style="display:none;">
-                            <strong style="color:#2e7d32;">Daily Quota:</strong><br>
+                            <strong style="color:#2e7d32; font-size: 13px;">Daily Quota:</strong><br>
                             <span id="dropdownQuotaText" style="color: #666;">0 / 1000</span>
                         </div>
                         <button class="profile-logout-btn" onclick="logoutUser()">Exit / Logout</button>
@@ -304,20 +322,20 @@
                     </table>
                 </div>
 
-                <!-- ORIGINAL PAGINATION COMBINED WITH MANUAL ENTRY DPDPA -->
+                <!-- ORIGINAL PAGINATION WITH RED/BLUE DPDPA FOR MANUAL SYNC -->
                 <div class="pagination-container">
                     <div id="pageInfoText">Page 1 of 1</div>
                     <div id="pageNumbers"></div>
                     
                     <div style="display: flex; align-items: center; gap: 10px;">
-                        <div id="manualSyncBlock" style="display: none; background: #eaf1fb; border: 1px solid #1976d2; border-radius: 4px; padding: 4px 8px;">
-                            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 11px; font-weight: bold; color: #d32f2f; margin: 0; white-space: nowrap;">
-                                <input type="checkbox" id="dpdpaManualConsentCheck" onchange="toggleManualSyncButton()" style="margin:0;">
+                        <div id="manualSyncBlock" class="dpdpa-inline-box">
+                            <input type="checkbox" id="dpdpaManualConsentCheck" onchange="toggleManualSyncButton()" style="margin:0; transform:scale(1.2);">
+                            <label for="dpdpaManualConsentCheck" class="dpdpa-inline-text">
                                 [DPDP Act] I certify Verifiable Parental Consent to sync entries to cloud.
                             </label>
                         </div>
-                        <button id="btnSyncManual" onclick="syncManualData()" disabled style="display: none; background-color: #1976d2; color: white; border: none; padding: 4px 10px; cursor: not-allowed; font-weight: bold; border-radius: 4px; font-size: 12px; opacity: 0.5;">☁️ Sync</button>
-                        <div class="add-row-btn"><button onclick="addRow()" style="padding: 6px 12px; background-color: #4285f4; color: white; border: none; cursor:pointer; font-weight:bold; border-radius: 4px; font-size: 12px;">+ Add Single Row</button></div>
+                        <button id="btnSyncManual" onclick="syncManualData()" disabled style="display: none; background-color: #1976d2; color: white; border: none; padding: 6px 15px; cursor: not-allowed; font-weight: bold; border-radius: 4px; font-size: 13px; opacity: 0.5;">☁️ Sync</button>
+                        <div class="add-row-btn"><button onclick="addRow()" style="padding: 6px 12px; background-color: #4285f4; color: white; border: none; cursor:pointer; font-weight:bold; border-radius: 4px; font-size: 12px; white-space:nowrap;">+ Add Single Row</button></div>
                     </div>
                 </div>
 
@@ -339,9 +357,9 @@
                     <div style="display: flex; align-items: center; gap: 15px; margin-top: 5px;">
                         <input type="file" id="csvFileInput" accept=".csv" style="width: auto; padding: 5px;">
                         
-                        <div id="registeredConsentBlock" style="display: none; background: #eaf1fb; border: 1px solid #1976d2; padding: 6px 10px; border-radius: 4px;">
-                            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 11px; font-weight: bold; color: #d32f2f; margin: 0;">
-                                <input type="checkbox" id="dpdpaConsentCheck" onchange="toggleUploadButton()" style="margin:0;"> 
+                        <div id="registeredConsentBlock" class="dpdpa-inline-box" style="flex-grow:0;">
+                            <input type="checkbox" id="dpdpaConsentCheck" onchange="toggleUploadButton()" style="margin:0; transform:scale(1.2);"> 
+                            <label for="dpdpaConsentCheck" class="dpdpa-inline-text">
                                 [DPDP Act] I certify verifiable parental consent obtained prior to upload.
                             </label>
                         </div>
@@ -148006,6 +148024,7 @@
     // DEPLOYMENT CONTROLS & GATEKEEPER LOGIC
     // ==========================================
     
+    // Set to true to unlock Phase 2 Guest Mode globally.
     const ENABLE_GUEST_MODE = false; 
     let isAuthenticatedUser = false; 
     let gkAuthMode = 'login'; 
@@ -148045,15 +148064,15 @@
         const submitBtn = document.getElementById('btnEnterReg');
 
         if (mode === 'register') {
-            btnReg.style.background = '#1976d2'; btnReg.style.color = 'white';
-            btnLog.style.background = 'white'; btnLog.style.color = '#1976d2';
+            btnReg.classList.add('gk-toggle-active'); btnReg.classList.remove('gk-toggle-inactive');
+            btnLog.classList.remove('gk-toggle-active'); btnLog.classList.add('gk-toggle-inactive');
             fieldsReg.style.display = 'block';
             dpdpaBlock.style.display = 'block';
-            submitBtn.innerText = 'Complete Registration';
+            submitBtn.innerText = 'Register';
             validateRegGate();
         } else {
-            btnLog.style.background = '#1976d2'; btnLog.style.color = 'white';
-            btnReg.style.background = 'white'; btnReg.style.color = '#1976d2';
+            btnLog.classList.add('gk-toggle-active'); btnLog.classList.remove('gk-toggle-inactive');
+            btnReg.classList.remove('gk-toggle-active'); btnReg.classList.add('gk-toggle-inactive');
             fieldsReg.style.display = 'none';
             dpdpaBlock.style.display = 'none';
             submitBtn.innerText = 'Sign In';
@@ -148125,8 +148144,8 @@
         toggleUploadButton();
         toggleManualSyncButton();
 
+        // Start user with exactly 10 clean slate empty rows. No fake data.
         if(gkAuthMode === 'login') {
-            // Load 10 clean slate rows
             globalData = [];
             for(let i=1; i<=10; i++) globalData.push(createEmptyRow(i));
             currentPage = 1;
@@ -148185,7 +148204,7 @@
     }
 
     // ==========================================
-    // CORE LOGIC (O(1) HASH MAPS INSTEAD OF JSON STRINGS)
+    // CORE LOGIC (O(1) HASH MAPS INSTEAD OF JSON STRINGS TO PREVENT CRASH)
     // ==========================================
 
     let chartInstance = null;
@@ -148276,16 +148295,16 @@
         }
         
         if (endPage < totalPages) {
-            pageHtml += `<span style="padding: 2px; font-weight: bold; color: #666;">...</span>`;
+            pageHtml += `<span style="padding: 4px; font-weight: bold; color: #666;">...</span>`;
             pageHtml += `<button class="page-num-btn" onclick="goToPage(${totalPages})">${totalPages}</button>`;
         }
         
         pageHtml += `<button class="page-num-btn" onclick="goToPage(${currentPage+1})" ${currentPage===totalPages?'disabled':''}>Next &raquo;</button>`;
         
-        pageHtml += `<div style="margin-left: 10px; display:inline-flex; align-items:center;">
-                        <span style="font-size:11px; margin-right:4px; font-weight:bold; color:#1976d2;">Jump to:</span>
-                        <input type="number" id="jumpPageInput" min="1" max="${totalPages}" style="width:40px; padding:2px; height:18px; font-size:11px; margin-right:4px;">
-                        <button class="page-num-btn" style="padding:2px 6px;" onclick="jumpToPage()">Go</button>
+        pageHtml += `<div style="margin-left: 15px; display:inline-flex; align-items:center;">
+                        <span style="font-size:12px; margin-right:5px; font-weight:bold; color:#1976d2;">Jump to:</span>
+                        <input type="number" id="jumpPageInput" min="1" max="${totalPages}" style="width:50px; padding:2px; height:20px; font-size:12px; margin-right:5px;">
+                        <button class="page-num-btn" style="padding:2px 8px;" onclick="jumpToPage()">Go</button>
                      </div>`;
 
         document.getElementById('pageNumbers').innerHTML = pageHtml;
@@ -148713,13 +148732,13 @@
     function generatePopulationStats() {
         let excludeFlags = document.getElementById('toggleExcl').checked;
         let wazData = getStatsArr('rawWaz', excludeFlags); let wM = calcMetrics(wazData.all), wB = calcMetrics(wazData.boys), wG = calcMetrics(wazData.girls); wazChartInst = drawBellChart('wazChart', wazChartInst, wM); let uAll = wazData.all.filter(v => v < -2).length, uB = wazData.boys.filter(v => v < -2).length, uG = wazData.girls.filter(v => v < -2).length; let suAll = wazData.all.filter(v => v < -3).length, suB = wazData.boys.filter(v => v < -3).length, suG = wazData.girls.filter(v => v < -3).length; let muAll = uAll - suAll, muB = uB - suB, muG = uG - suG;
-        document.getElementById('wazStatsText').innerHTML = `Prevalence of underweight (<-2 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', uAll, wM.n, calcPrev(uAll, wM.n)) + formatLineHTML('Boys', uB, wB.n, calcPrev(uB, wB.n)) + formatLineHTML('Girls', uG, wG.n, calcPrev(uG, wG.n)) + `</table><br>Prevalence of moderate underweight (<-2 and >=-3 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', muAll, wM.n, calcPrev(muAll, wM.n)) + formatLineHTML('Boys', muB, wB.n, calcPrev(muB, wB.n)) + formatLineHTML('Girls', muG, wG.n, calcPrev(muG, wG.n)) + `</table><br>Prevalence of severe underweight (<-3 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', suAll, wM.n, calcPrev(suAll, wM.n)) + formatLineHTML('Boys', suB, wB.n, calcPrev(suB, wB.n)) + formatLineHTML('Girls', suG, wG.n, calcPrev(suG, wG.n)) + `</table><br><div class="stats-footer-text">mean±SD of WAZ: ${wM.mean.toFixed(2)} ± ${wM.sd.toFixed(2)}<br>Out of range: ${wazData.flags}</div>`;
+        document.getElementById('wazStatsText').innerHTML = `Prevalence of underweight (<-2 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', uAll, wM.n, calcPrev(uAll, wM.n)) + formatLineHTML('Boys', uB, wB.n, calcPrev(uB, wB.n)) + formatLineHTML('Girls', uG, wG.n, calcPrev(uG, wG.n)) + `</table><br>Prevalence of moderate underweight (<-2 and >=-3 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', muAll, wM.n, calcPrev(muAll, wM.n)) + formatLineHTML('Boys', muB, wB.n, calcPrev(muB, wB.n)) + formatLineHTML('Girls', muG, wG.n, calcPrev(muG, wG.n)) + `</table><br>Prevalence of severe underweight (<-3 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', suAll, wM.n, calcPrev(suAll, wM.n)) + formatLineHTML('Boys', suB, wB.n, calcPrev(suB, wB.n)) + formatLineHTML('Girls', suG, wG.n, calcPrev(suG, wG.n)) + `</table><br><div class="stats-footer-text">mean±SD of WAZ (n=${wM.n}): ${wM.mean.toFixed(2)} ± ${wM.sd.toFixed(2)}<br>Out of range: ${wazData.flags}</div>`;
 
         let hazData = getStatsArr('rawHaz', excludeFlags); let hM = calcMetrics(hazData.all), hB = calcMetrics(hazData.boys), hG = calcMetrics(hazData.girls); hazChartInst = drawBellChart('hazChart', hazChartInst, hM); let sAll = hazData.all.filter(v => v < -2).length, sB = hazData.boys.filter(v => v < -2).length, sG = hazData.girls.filter(v => v < -2).length; let ssAll = hazData.all.filter(v => v < -3).length, ssB = hazData.boys.filter(v => v < -3).length, ssG = hazData.girls.filter(v => v < -3).length; let msAll = sAll - ssAll, msB = sB - ssB, msG = sG - ssG;
-        document.getElementById('hazStatsText').innerHTML = `Prevalence of stunting (<-2 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', sAll, hM.n, calcPrev(sAll, hM.n)) + formatLineHTML('Boys', sB, hB.n, calcPrev(sB, hB.n)) + formatLineHTML('Girls', sG, hG.n, calcPrev(sG, hG.n)) + `</table><br>Prevalence of moderate stunting (<-2 and >=-3 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', msAll, hM.n, calcPrev(msAll, hM.n)) + formatLineHTML('Boys', msB, hB.n, calcPrev(msB, hB.n)) + formatLineHTML('Girls', msG, hG.n, calcPrev(msG, hG.n)) + `</table><br>Prevalence of severe stunting (<-3 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', ssAll, hM.n, calcPrev(ssAll, hM.n)) + formatLineHTML('Boys', ssB, hB.n, calcPrev(ssB, hB.n)) + formatLineHTML('Girls', ssG, hG.n, calcPrev(ssG, hG.n)) + `</table><br><div class="stats-footer-text">mean±SD of HAZ: ${hM.mean.toFixed(2)} ± ${hM.sd.toFixed(2)}<br>Out of range: ${hazData.flags}</div>`;
+        document.getElementById('hazStatsText').innerHTML = `Prevalence of stunting (<-2 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', sAll, hM.n, calcPrev(sAll, hM.n)) + formatLineHTML('Boys', sB, hB.n, calcPrev(sB, hB.n)) + formatLineHTML('Girls', sG, hG.n, calcPrev(sG, hG.n)) + `</table><br>Prevalence of moderate stunting (<-2 and >=-3 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', msAll, hM.n, calcPrev(msAll, hM.n)) + formatLineHTML('Boys', msB, hB.n, calcPrev(msB, hB.n)) + formatLineHTML('Girls', msG, hG.n, calcPrev(msG, hG.n)) + `</table><br>Prevalence of severe stunting (<-3 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', ssAll, hM.n, calcPrev(ssAll, hM.n)) + formatLineHTML('Boys', ssB, hB.n, calcPrev(ssB, hB.n)) + formatLineHTML('Girls', ssG, hG.n, calcPrev(ssG, hG.n)) + `</table><br><div class="stats-footer-text">mean±SD of HAZ (n=${hM.n}): ${hM.mean.toFixed(2)} ± ${hM.sd.toFixed(2)}<br>Out of range: ${hazData.flags}</div>`;
 
         let whzData = getStatsArr('rawWhz', excludeFlags); let whM = calcMetrics(whzData.all), whB = calcMetrics(whzData.boys), whG = calcMetrics(whzData.girls); whzChartInst = drawBellChart('whzChart', whzChartInst, whM); let waAll = whzData.all.filter(v => v < -2).length, waB = whzData.boys.filter(v => v < -2).length, waG = whzData.girls.filter(v => v < -2).length; let swAll = whzData.all.filter(v => v < -3).length, swB = whzData.boys.filter(v => v < -3).length, swG = whzData.girls.filter(v => v < -3).length; let mwAll = waAll - swAll, mwB = waB - swB, mwG = waG - swG;
-        document.getElementById('whzStatsText').innerHTML = `Prevalence of acute malnutrition (<-2 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', waAll, whM.n, calcPrev(waAll, whM.n)) + formatLineHTML('Boys', waB, whB.n, calcPrev(waB, whB.n)) + formatLineHTML('Girls', waG, whG.n, calcPrev(waG, whG.n)) + `</table><br>Prevalence of moderate acute malnutrition (<-2 and >=-3 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', mwAll, whM.n, calcPrev(mwAll, whM.n)) + formatLineHTML('Boys', mwB, whB.n, calcPrev(mwB, whB.n)) + formatLineHTML('Girls', mwG, whG.n, calcPrev(mwG, whG.n)) + `</table><br>Prevalence of severe acute malnutrition (<-3 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', swAll, whM.n, calcPrev(swAll, whM.n)) + formatLineHTML('Boys', swB, whB.n, calcPrev(swB, whB.n)) + formatLineHTML('Girls', swG, whG.n, calcPrev(swG, whG.n)) + `</table><br><div class="stats-footer-text">mean±SD of WHZ: ${whM.mean.toFixed(2)} ± ${whM.sd.toFixed(2)}<br>Out of range: ${whzData.flags}</div>`;
+        document.getElementById('whzStatsText').innerHTML = `Prevalence of acute malnutrition (<-2 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', waAll, whM.n, calcPrev(waAll, whM.n)) + formatLineHTML('Boys', waB, whB.n, calcPrev(waB, whB.n)) + formatLineHTML('Girls', waG, whG.n, calcPrev(waG, whG.n)) + `</table><br>Prevalence of moderate acute malnutrition (<-2 and >=-3 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', mwAll, whM.n, calcPrev(mwAll, whM.n)) + formatLineHTML('Boys', mwB, whB.n, calcPrev(mwB, whB.n)) + formatLineHTML('Girls', mwG, whG.n, calcPrev(mwG, whG.n)) + `</table><br>Prevalence of severe acute malnutrition (<-3 z-score)<br><table class="stats-grid-table">` + formatLineHTML('Total', swAll, whM.n, calcPrev(swAll, whM.n)) + formatLineHTML('Boys', swB, whB.n, calcPrev(swB, whB.n)) + formatLineHTML('Girls', swG, whG.n, calcPrev(swG, whG.n)) + `</table><br><div class="stats-footer-text">mean±SD of WHZ (n=${whM.n}): ${whM.mean.toFixed(2)} ± ${whM.sd.toFixed(2)}<br>Out of range: ${whzData.flags}</div>`;
 
         let rawScatterData = [];
         globalData.forEach(r => {
