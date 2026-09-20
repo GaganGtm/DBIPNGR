@@ -28,14 +28,6 @@
             box-shadow: 2px 0 15px rgba(0,0,0,0.1);
             z-index: 2;
         }
-        
-        /* CSS Filter turns black line-art into the matching #1976d2 blue theme */
-        .gk-left-image {
-            width: 70%;
-            max-width: 500px;
-            height: auto;
-            filter: invert(36%) sepia(91%) saturate(1611%) hue-rotate(193deg) brightness(94%) contrast(98%);
-        }
 
         /* Right Side: Interactive Portal */
         .gk-right {
@@ -136,7 +128,9 @@
         #pageInfoText { font-weight: bold; font-size: 13px; color: #1976d2; flex: 1; text-align: left; }
         #pageNumbers { flex: 2; display: flex; gap: 5px; flex-wrap: wrap; justify-content: center; align-items: center;}
         .page-num-btn { background: white; color: #1976d2; border: 1px solid #90caf9; padding: 4px 10px; cursor: pointer; font-weight: bold; border-radius: 4px; font-size: 12px; transition: 0.2s;}
+        .page-num-btn:hover:not(:disabled) { background: #bbdefb; }
         .page-num-btn.active { background: #1976d2; color: white; border-color: #1976d2; cursor: default; }
+        .page-num-btn:disabled { color: #aaa; border-color: #ddd; cursor: not-allowed; }
         .add-row-btn { flex: 1; text-align: right; }
         
         .bulk-import-container { flex: 0 0 auto; background: #e8f0fe; padding: 10px; margin-top: 5px; border: 1px solid #4285f4; border-radius: 5px; font-size: 13px; display: flex; flex-direction: column; gap: 10px;}
@@ -154,6 +148,7 @@
         .summary-table { flex-grow: 1; display: flex; flex-direction: column; background: white; padding: 15px; border-radius: 8px; border: 1px solid #ccc; box-shadow: 0 2px 5px rgba(0,0,0,0.05);}
         .header-with-btn { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 10px; }
         .export-btn { background-color: #4caf50; color: white; border: none; padding: 5px 12px; cursor: pointer; font-weight: bold; border-radius: 4px; font-size: 12px; transition: background 0.2s; white-space: nowrap; }
+        .export-btn:hover { background-color: #388e3c; }
         .dl-link { color: #1976d2; font-weight: bold; text-decoration: underline; cursor: pointer; display: block; width: 100%; height: 100%;}
         .exclusion-toggle-bar { display: flex; flex-direction: row; justify-content: space-between; align-items: center; background: white; padding: 12px 20px; border-radius: 8px; border: 1px solid #ccc; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); white-space: nowrap; }
         .toggle-options { display: flex; gap: 20px; align-items: center; font-size: 15px; color: #673ab7; font-weight: bold; margin-right: auto;}
@@ -164,6 +159,8 @@
         .stat-text-container { width: 45%; height: 100%; overflow: hidden; background: #ffffff; border: 1px solid #bdbdbd; border-radius: 5px; padding: 20px; box-shadow: inset 0 0 5px rgba(0,0,0,0.02); display: flex; flex-direction: column; justify-content: space-between;}
         .stats-grid-table { width: 100%; border-collapse: collapse; font-family: "Courier New", Courier, monospace; font-size: 12.5px; font-weight: 700; color: #000; line-height: 1.5; }
         .stats-grid-table td { padding: 4px 0; vertical-align: top; border-bottom: 1px dashed #eee; }
+        .stats-grid-table tr:last-child td { border-bottom: none; }
+        .stats-footer-text { font-family: "Courier New", Courier, monospace; font-size: 13.5px; font-weight: 700; color: #000; margin-top: 15px; }
         .scatter-container { width: 100%; background: white; border: 1px solid #ccc; border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); box-sizing: border-box;}
         .scatter-wrapper { position: relative; width: 100%; max-width: 800px; height: 800px; margin: 15px auto; background-color: #fdfdfd; border: 1px solid #e0e0e0; overflow: hidden; box-sizing: border-box;}
         .exclusion-footer { background: #ede7f6; border-left: 5px solid #673ab7; padding: 15px; margin-top: 20px; font-size: 13px; color: #333; line-height: 1.6; border-radius: 0 4px 4px 0;}
@@ -222,9 +219,18 @@
          ========================================================= -->
     <div id="gatekeeperOverlay">
         
-        <!-- Left Side: Custom Image Holder -->
+        <!-- Left Side: Pure Code Vector Graphic -->
         <div class="gk-left">
-            <img src="image_eecf52.png" alt="Mother and Child" class="gk-left-image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1976d2" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" style="width: 55%; max-width: 400px; height: auto;">
+                <!-- Mother Figure -->
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <!-- Child Figure -->
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                <!-- Caring Embrace Arc -->
+                <path d="M4 11 A 10 10 0 0 0 20 11" stroke-dasharray="4 4" opacity="0.6"/>
+            </svg>
         </div>
 
         <!-- Right Side: Interactive Portal -->
@@ -333,9 +339,10 @@
                     </div>
                 </div>
 
-                <div class="gk-footer">
-                    Copyright DBI Calculator, Phadke, Gautam, Nair and Rade, 2026.
-                </div>
+            </div>
+            
+            <div class="gk-footer">
+                Copyright DBI Calculator, Phadke, Gautam, Nair and Rade, 2026.
             </div>
         </div>
     </div>
